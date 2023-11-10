@@ -5,10 +5,17 @@
   <div class="address">
     <a href="#" class="deliver">Deliver</a>
     <div class="map-icon">
-      <span class="material-symbols-outlined">location_on</span>
-      <a href="#" class="location">Amritsar</a>
+        <span class="material-symbols-outlined">location_on</span>
+        @auth
+            <a href="#" class="location">{{ Auth::user()->city }}</a>
+        @else
+            <a href="#" class="location">India</a>
+        @endauth
     </div>
-  </div>
+</div>
+
+</div>
+
 
   <div class="nav-search">
     <select class="select-search">
@@ -26,8 +33,38 @@
   </div>
 
   <div class="sign-in">
-   <a href="#"> <p>Hello, sign in</p>
-    <span>Account &amp; Lists</span></a>
+    @guest
+    @if (Route::has('login'))
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+    @endif
+
+    @if (Route::has('register'))
+        
+        <li>
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
+    @endif
+@else
+    <li class="nav-item dropdown">
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          <p>Hello, {{ Auth::user()->name }}</p>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+    </li>
+@endguest
   </div>
 
   <div class="returns">
@@ -52,13 +89,13 @@
 
     <ul class="links">
       <li><a href="#">Today's Deals</a></li>
-      <li><a href="#">Customer Service</a></li>
-      <li><a href="#">Registry</a></li>
-      <li><a href="#">Gift Cards</a></li>
-      <li><a href="#">Sell</a></li>
+      <li><a href="#">Bus Ticket</a></li>
+      <li><a href="#">Tour Packages</a></li>
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Digital & Electronics</a></li>
     </ul>
     <div class="deals">
-      <a href="#">Shop deals in Electronics</a>
+      <a href="#">Become an Associate</a>
     </div>
   </div>
 </div>

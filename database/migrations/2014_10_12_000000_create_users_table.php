@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('mobile_number')->unique(); // Using mobile number as unique identifier
-            $table->string('ref_mobile_number'); // Using this mobile number for referral income.
-            $table->tinyinteger('user_role')->default('0')->comment('0=Admin','1=Store','2=Warehouse','3=Sub-Warehouse','4=Logistic','5=Employee');
+            $table->string('ref_mobile_number')->default('1111111111'); // Using this mobile number for referral income.
+            $table->tinyinteger('user_role')->default('0');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
