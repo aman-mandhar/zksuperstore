@@ -89,13 +89,14 @@
 
     <ul class="links">
       <li><a href="#">Today's Deals</a></li>
-      <li><a href="#">Bus Ticket</a></li>
+      <li><a href="#">Bus Tickets</a></li>
       <li><a href="#">Tour Packages</a></li>
       <li><a href="#">Courses</a></li>
-      <li><a href="#">Digital & Electronics</a></li>
+      <li><a href="#">Electronics</a></li>
+      <li><a href="#">Digital</a></li>
     </ul>
     <div class="deals">
-      <a href="#">Become an Associate</a>
+      <a href="#">Recycle Units</a>
     </div>
   </div>
 </div>

@@ -27,11 +27,15 @@ class AdminMiddleware
 
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->user_role != '1')
+        if(Auth::user()->user_role == '1')
         {
-            return redirect('/home')->with('status','Access Denied');   
+            return redirect('/admin/dashboard');
+            return redirect('/items/create');
+            return redirect('/items/{item}/edit');
+            return redirect('/items/{item}');
+               
         }
-    return $next($request);
+    return $next('/welcome');
     }
 
 }

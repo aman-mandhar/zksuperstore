@@ -14,7 +14,7 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Add Product</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ 'admin/items/create' }}">Add Product</a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Edit Product</a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add Item</a></li>
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Edit Item</a></li>
