@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('Description'); // Product Descrition
             $table->string('prod_cat'); // Product category
             $table->string('prod_pic')->nullable(); // Product picture (assuming you'd store the file path here)
-            $table->timestamp('timestamp')->useCurrent(); // Current timestamp
+            $table->timestamps();
         });
     }
 

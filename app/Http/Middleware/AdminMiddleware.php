@@ -25,17 +25,12 @@ class AdminMiddleware
      * 5-Employee
      */
 
-    public function handle(Request $request, Closure $next): Response
-    {
-        if(Auth::user()->user_role == '1')
-        {
-            return redirect('/admin/dashboard');
-            return redirect('/items/create');
-            return redirect('/items/{item}/edit');
-            return redirect('/items/{item}');
-               
-        }
-    return $next('/welcome');
-    }
-
+     public function handle(Request $request, Closure $next): Response
+     {
+         if(Auth::user()->user_role != '1')
+         {
+             return redirect('/home')->with('status','Access Denied');   
+         }
+     return $next($request);
+     }
 }
