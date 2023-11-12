@@ -47,6 +47,8 @@ Route::delete('/items/{item}', [App\Http\Controllers\Admin\ItemController::class
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/register', 'RegisterController@register')->name('register');
+
 
 
 Auth::routes();
