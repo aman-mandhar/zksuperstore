@@ -31,13 +31,33 @@ class LoginController extends Controller
 
     protected function authenticated()
     {
+        if(Auth::user()->user_role == 0)
+        {
+        return redirect('/')->with('status','Welcome to Dashboard');
+        }
         if(Auth::user()->user_role == 1)
         {
-        return redirect('admin/dashboard')->with('status','Welcome to Admin Dashboard');
+        return redirect('admin/dashboard')->with('status','Welcome to Dashboard');
+        }
+        if(Auth::user()->user_role == 2)
+        {
+        return redirect('stores/dashboard')->with('status','Welcome to Dashboard');
+        }
+        if(Auth::user()->user_role == 3)
+        {
+        return redirect('warehouse/dashboard')->with('status','Welcome to Dashboard');
+        }
+        if(Auth::user()->user_role == 4)
+        {
+        return redirect('sub-warehouse/dashboard')->with('status','Welcome to Dashboard');
+        }
+        if(Auth::user()->user_role == 5)
+        {
+        return redirect('employee/dashboard')->with('status','Welcome to Dashboard');
         }
         else
         {
-        return redirect('/home')->with('status','Logged in Successfully');
+        return redirect('welcome');
         }
     }
 
