@@ -74,12 +74,12 @@ Route::post('/register', 'RegisterController@register')->name('register');
 
 Auth::routes();
 
-Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'isAdmins'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admindashboard');
 });
 
-Route::prefix('store')->middleware(['auth', 'isStores'])->group(function () {
-    Route::get('stores/dashboard', [App\Http\Controllers\Store\DashboardController::class, 'index'])->name('storedashboard');
+Route::prefix('stores')->middleware(['auth', 'isStores'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Store\DashboardController::class, 'index'])->name('storedashboard');
 });
 
 

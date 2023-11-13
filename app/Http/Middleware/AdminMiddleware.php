@@ -29,7 +29,7 @@ class AdminMiddleware
      {
          if(Auth::user()->user_role != '1')
          {
-             return redirect('/home')->with('status','Access Denied');   
+             return redirect('/')->with('status','Access Denied');   
          }
      return $next($request);
      }
