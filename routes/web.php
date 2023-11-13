@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Contracts\Cache\Store;
 
 /*
@@ -44,22 +44,22 @@ Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.
 
 
 // Display a listing of the items.
-Route::get('/stores', [StoreController::class, 'index'])->name('store.index');
+Route::get('/stores', [App\Http\Controllers\Store\StoreController::class, 'index'])->name('store.index');
 
 // Show the form for creating a new item.
-Route::get('/stores/create', [StoreController::class, 'create'])->name('store.create');
+Route::get('/stores/create', [App\Http\Controllers\Store\StoreController::class, 'create'])->name('store.create');
 
 // Store a newly created item in storage.
-Route::post('/stores', [StoreController::class, 'store'])->name('store.store');
+Route::post('/stores', [App\Http\Controllers\Store\StoreController::class, 'store'])->name('store.store');
 
 // Show the form for editing the specified item.
-Route::get('/stores/{store}/edit', [StoreController::class, 'edit'])->name('store.edit');
+Route::get('/stores/{store}/edit', [App\Http\Controllers\Store\StoreController::class, 'edit'])->name('store.edit');
 
 // Update the specified item in storage.
-Route::put('/stores/{store}', [StoreController::class, 'update'])->name('store.update');
+Route::put('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'update'])->name('store.update');
 
 // Remove the specified item from storage.
-Route::delete('/stores/{store}', [StoreController::class, 'destroy'])->name('store.destroy');
+Route::delete('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'destroy'])->name('store.destroy');
 
 
 

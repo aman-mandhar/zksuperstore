@@ -24,6 +24,7 @@
     <!-- Style -->
     
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         
     @livewireStyles  
 </head>
@@ -35,10 +36,12 @@
       <div class="main-panel">
         <div class="content-wrapper">
           @yield('content')
+          @include('layouts.inc.admin.footer')
         </div>
       </div>  
     </div>
   </div>
+  
     
 <!-- Scripts -->
 <!-- plugins:js -->

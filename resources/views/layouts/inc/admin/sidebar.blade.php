@@ -14,10 +14,10 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ '/items/create' }}">Add Product</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/items/edit' }}">Edit Product</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/itemsin/create' }}">Add Item</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/itemsin/edit' }}">Edit Item</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ '/items/create' }}" target="_blank">Add Product</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/items/edit' }} target="_blank">Edit Product</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/itemsin/create' }} target="_blank">Add Item</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/itemsin/edit' }} target="_blank">Edit Item</a></li>
           </ul>
         </div>
       </li>

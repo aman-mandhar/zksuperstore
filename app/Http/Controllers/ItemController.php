@@ -1,7 +1,7 @@
 <?php
 
 // app\Http\Controllers\ItemController.php
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Http\Controllers\Controller;
