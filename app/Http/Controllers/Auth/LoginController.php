@@ -45,15 +45,15 @@ class LoginController extends Controller
         }
         if(Auth::user()->user_role == 3)
         {
-        return redirect('warehouse/dashboard')->with('status','Welcome to Dashboard');
+        return redirect('warehouses/dashboard')->with('status','Welcome to Dashboard');
         }
         if(Auth::user()->user_role == 4)
         {
-        return redirect('sub-warehouse/dashboard')->with('status','Welcome to Dashboard');
+        return redirect('subwarehouses/dashboard')->with('status','Welcome to Dashboard');
         }
         if(Auth::user()->user_role == 5)
         {
-        return redirect('employee/dashboard')->with('status','Welcome to Dashboard');
+        return redirect('employees/dashboard')->with('status','Welcome to Dashboard');
         }
         else
         {

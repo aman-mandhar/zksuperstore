@@ -82,4 +82,20 @@ Route::prefix('stores')->middleware(['auth', 'isStores'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Store\DashboardController::class, 'index'])->name('storedashboard');
 });
 
+Route::prefix('employees')->middleware(['auth', 'isEmployees'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Employee\DashboardController::class, 'index'])->name('employeedashboard');
+});
+
+Route::prefix('warehouses')->middleware(['auth', 'isWarehouses'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Warehouse\DashboardController::class, 'index'])->name('warehousedashboard');
+});
+
+Route::prefix('subwarehouses')->middleware(['auth', 'isSubwarehouses'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Subwarehouse\DashboardController::class, 'index'])->name('subwarehousedashboard');
+});
+
+Route::prefix('customers')->middleware(['auth', 'isCustomers'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('customerdashboard');
+});
+
 
