@@ -26,9 +26,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Description" class="col-md-4 col-form-label text-md-right">{{ __('Product Description') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Product Description') }}</label>
                             <div class="col-md-6">
-                                <textarea id="Description" class="form-control @error('Description') is-invalid @enderror" name="Description" required>{{ old('Description') }}</textarea>
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required>{{ old('description') }}</textarea>
                                 @error('Description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +40,15 @@
                         <div class="form-group row">
                             <label for="prod_cat" class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
                             <div class="col-md-6">
-                                <input id="prod_cat" type="text" class="form-control @error('prod_cat') is-invalid @enderror" name="prod_cat" value="{{ old('prod_cat') }}" required>
+                                <select id="prod_cat" class="form-control @error('prod_cat') is-invalid @enderror" name="prod_cat" required>
+                                    <option value="" selected disabled>Select a category</option>
+                                    <option value="Health Products">Health Products</option>
+                                    <option value="Crockery">Crockery</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Grocery">Grocery</option>
+                                    <option value="Garments">Garments</option>
+                                    <option value="Service">Services</option>
+                                </select>
                                 @error('prod_cat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,6 +56,7 @@
                                 @enderror
                             </div>
                         </div>
+                        
 
                         <div class="form-group row">
                             <label for="prod_pic" class="col-md-4 col-form-label text-md-right">{{ __('Product Picture') }}</label>

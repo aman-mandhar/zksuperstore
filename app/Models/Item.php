@@ -10,14 +10,5 @@ class Item extends Model
 {
     use HasFactory;
 
-    
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-
-    protected $fillable = ['name', 'Description', 'prod_cat', 'prod_pic'];
-
-    // Additional methods, relationships, etc. can be added here
+    protected $fillable = ['name', 'description', 'prod_cat', 'prod_pic'];
 }

@@ -26,7 +26,7 @@ class ItemController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'Description' => 'required|string',
+            'description' => 'required|string',
             'prod_cat' => 'required|string',
             'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -43,34 +43,37 @@ class ItemController extends Controller
         return redirect()->route('items.index')->with('success', 'Item created successfully.');
     }
 
-    // Show the form for editing the specified item.
-    public function edit(Item $item)
+    public function edit($id)
     {
+        $item = Item::findOrFail($id);
+
         return view('items.edit', compact('item'));
     }
 
-    // Update the specified item in storage.
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'Description' => 'required|string',
+        $item = Item::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
             'prod_cat' => 'required|string',
-            'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // adjust validation as needed
         ]);
 
+        $item->update($request->all());
+
+        // Handle image upload if a new image is provided
         if ($request->hasFile('prod_pic')) {
-            $image = $request->file('prod_pic');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $validatedData['prod_pic'] = 'images/'.$imageName;
+            $imagePath = $request->file('prod_pic')->store('public/images');
+            $item->prod_pic = $imagePath;
+            $item->save();
         }
 
-        $item->update($validatedData);
-
-        return redirect()->route('items.index')->with('success', 'Item updated successfully.');
+        return redirect()->route('items.index')->with('success', 'Item updated successfully');
     }
-
+    
+    
     // Remove the specified item from storage.
     public function destroy(Item $item)
     {
@@ -79,3 +82,4 @@ class ItemController extends Controller
         return redirect()->route('items.index')->with('success', 'Item deleted successfully.');
     }
 }
+

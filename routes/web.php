@@ -23,43 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Display a listing of the items.
-Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-
-// Show the form for creating a new item.
-Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
-
-// Store a newly created item in storage.
-Route::post('/items', [ItemController::class, 'store'])->name('items.store');
-
-// Show the form for editing the specified item.
-Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
-
-// Update the specified item in storage.
-Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
-
-// Remove the specified item from storage.
-Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
-
-
-
-// Display a listing of the items.
-Route::get('/stores', [App\Http\Controllers\Store\StoreController::class, 'index'])->name('store.index');
-
-// Show the form for creating a new item.
-Route::get('/stores/create', [App\Http\Controllers\Store\StoreController::class, 'create'])->name('store.create');
-
-// Store a newly created item in storage.
-Route::post('/stores', [App\Http\Controllers\Store\StoreController::class, 'store'])->name('store.store');
-
-// Show the form for editing the specified item.
-Route::get('/stores/{store}/edit', [App\Http\Controllers\Store\StoreController::class, 'edit'])->name('store.edit');
-
-// Update the specified item in storage.
-Route::put('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'update'])->name('store.update');
-
-// Remove the specified item from storage.
-Route::delete('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'destroy'])->name('store.destroy');
 
 
 
@@ -98,4 +61,35 @@ Route::prefix('users')->middleware(['auth', 'isCustomers'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('customerdashboard');
 });
 
+
+
+
+
+Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->name('items.index');
+Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create'])->name('items.create');
+Route::post('/items', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
+Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'edit'])->name('items.edit');
+Route::put('/items/{item}', [App\Http\Controllers\ItemController::class, 'update'])->name('items.update');
+Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'destroy'])->name('items.destroy');
+
+
+
+
+// Display a listing of the items.
+Route::get('/stores', [App\Http\Controllers\Store\StoreController::class, 'index'])->name('store.index');
+
+// Show the form for creating a new item.
+Route::get('/stores/create', [App\Http\Controllers\Store\StoreController::class, 'create'])->name('store.create');
+
+// Store a newly created item in storage.
+Route::post('/stores', [App\Http\Controllers\Store\StoreController::class, 'store'])->name('store.store');
+
+// Show the form for editing the specified item.
+Route::get('/stores/{store}/edit', [App\Http\Controllers\Store\StoreController::class, 'edit'])->name('store.edit');
+
+// Update the specified item in storage.
+Route::put('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'update'])->name('store.update');
+
+// Remove the specified item from storage.
+Route::delete('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'destroy'])->name('store.destroy');
 
