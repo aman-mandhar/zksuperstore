@@ -20,7 +20,7 @@ class DashboardController extends Controller
     {
         if(Auth::user()->user_role == 0)
         {
-        return redirect('/')->with('status','Welcome to Dashboard');
+        return redirect('users/dashboard')->with('status','Welcome to Dashboard');
         }
         if(Auth::user()->user_role == 1)
         {

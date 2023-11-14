@@ -5,27 +5,20 @@
   <div class="address">
     <a href="#" class="deliver">Deliver</a>
     <div class="map-icon">
-        <span class="material-symbols-outlined">location_on</span>
-        @auth
-            <a href="#" class="location">{{ Auth::user()->city }}</a>
-        @else
-            <a href="#" class="location">India</a>
-        @endauth
+      <span class="material-symbols-outlined">location_on</span>
+      <a href="#" class="location">Amritsar</a>
     </div>
-</div>
-
-</div>
-
+  </div>
 
   <div class="nav-search">
     <select class="select-search">
-    <option>All</option>
-    <option value="Packet">Daily Need</option>
-              <option value="Service">Service</option>
-              <option value="Ticket">Ticket</option>
-              <option value="Package">Package</option>
-              <option value="Course">Course</option>
-    </select>
+<option>All</option>
+<option value="Packet">Daily Need</option>
+        <option value="Service">Service</option>
+        <option value="Ticket">Ticket</option>
+        <option value="Package">Package</option>
+        <option value="Course">Course</option>
+</select>
     <input type="text" placeholder="Search" class="search-input">
     <div class="search-icon">
       <span class="material-symbols-outlined">search</span>
@@ -33,37 +26,37 @@
   </div>
 
   <div class="sign-in">
-    @guest
-    @if (Route::has('login'))
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-        </li>
-    @endif
+   @guest
+@if (Route::has('login'))
+  <li class="nav-item">
+      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+  </li>
+@endif
 
-    @if (Route::has('register'))
-        
-        <li>
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-        </li>
-    @endif
+@if (Route::has('register'))
+  
+  <li>
+      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+  </li>
+@endif
 @else
-    <li class="nav-item dropdown">
-        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-          <p>Hello, {{ Auth::user()->name }}</p>
-        </a>
+<li class="nav-item dropdown">
+  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+    <p>Hello, {{ Auth::user()->name }}</p>
+  </a>
 
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
+  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="{{ route('logout') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+          {{ __('Logout') }}
+      </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </div>
-    </li>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+      </form>
+  </div>
+</li>
 @endguest
   </div>
 
@@ -88,15 +81,15 @@
     </div>
 
     <ul class="links">
-      <li><a href="#">Today's Deals</a></li>
-      <li><a href="#">Bus Tickets</a></li>
-      <li><a href="#">Tour Packages</a></li>
-      <li><a href="#">Courses</a></li>
-      <li><a href="#">Electronics</a></li>
-      <li><a href="#">Digital</a></li>
-    </ul>
-    <div class="deals">
-      <a href="#">Recycle Units</a>
-    </div>
+<li><a href="#">Today's Deals</a></li>
+<li><a href="#">Bus Tickets</a></li>
+<li><a href="#">Tour Packages</a></li>
+<li><a href="#">Courses</a></li>
+<li><a href="#">Electronics</a></li>
+<li><a href="#">Digital</a></li>
+</ul>
+<div class="deals">
+<a href="#">Recycle Units</a>
+</div>
   </div>
 </div>

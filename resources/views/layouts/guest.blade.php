@@ -22,8 +22,7 @@
     <div class="container-scroller">
         @include('layouts.inc.user.navbar')
         <div class="container-fluid page-body-wrapper">
-          @include('layouts.inc.user.sidebar')
-          <div class="main-panel">
+           <div class="main-panel">
             <div class="content-wrapper">
               @yield('content')
               @include('layouts.inc.user.footer')
@@ -31,9 +30,6 @@
           </div>  
         </div>
       </div>
-<!-- Scripts -->
-<script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
-<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 
 @livewireScripts
 </body>

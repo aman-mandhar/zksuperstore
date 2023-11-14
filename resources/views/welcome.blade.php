@@ -1,8 +1,7 @@
 
 @extends('layouts.guest')
-@section('content')
-        
-            <section class="hero-section"><img src="{{ asset('assets/user/images/hero.png') }}" alt="card"></section>
+@section('content')        
+            <img src="{{ asset('assets/user/images/hero.jpg') }}" alt="card"/>
             <section class="shop-section">
               <div class="shop-images">
                 <div class="shop-link">
@@ -27,8 +26,6 @@
                 </div>
               </div>
             </section>
-            
-
          @livewireScripts
     </body>
     

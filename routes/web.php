@@ -94,7 +94,7 @@ Route::prefix('subwarehouses')->middleware(['auth', 'isSubwarehouses'])->group(f
     Route::get('dashboard', [App\Http\Controllers\Subwarehouse\DashboardController::class, 'index'])->name('subwarehousedashboard');
 });
 
-Route::prefix('customers')->middleware(['auth', 'isCustomers'])->group(function () {
+Route::prefix('users')->middleware(['auth', 'isCustomers'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('customerdashboard');
 });
 

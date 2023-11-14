@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
 
 * {
-  margin: 0;
+  margin: 0px;
   padding: 0;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
@@ -24,6 +24,7 @@ a:hover {
 header {
   width: 100%;
   background-color: #0f1111;
+  margin-bottom: 0;
 }
 
 .navbar {
@@ -33,8 +34,10 @@ header {
   justify-content: space-between;
   cursor: pointer;
   color: #fff;
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1670px;
+  padding: 5px;
+  background-color: #0f1111;
+  margin-bottom: 0;
 }
 
 .nav-logo img {
@@ -124,10 +127,11 @@ header {
   background: #222f3d;
   color: #fff;
   font-size: 0.875rem;
+  margin-bottom: 0;
 }
 
 .banner-content {
-  margin: 0 auto;
+  margin: auto;
   max-width: 1280px;
   display: flex;
   align-items: center;
@@ -140,6 +144,7 @@ header {
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  margin-bottom: 0;
 }
 
 .panel span {
@@ -167,10 +172,10 @@ header {
 
 /* Hero Section */
 .hero-section {
-  height: 400px;
-  background-image: url("images/hero.png");
-  background-position: center;
-  background-size: cover;
+  margin-top: 0px;
+  height: auto;
+  margin-bottom: 0px;
+ 
 }
 
 /* Shop Section */
