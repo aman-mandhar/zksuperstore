@@ -28,13 +28,13 @@ header {
 }
 
 .navbar {
-  height: 60px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   color: #fff;
-  max-width: 1670px;
+  max-width: auto;
   padding: 5px;
   background-color: #0f1111;
   margin-bottom: 0;

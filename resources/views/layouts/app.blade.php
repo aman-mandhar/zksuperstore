@@ -15,12 +15,13 @@
     
     <!-- Style -->
     
-    <link rel="stylesheet" href="{{ asset('assets/css/user/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('store/css/style.css') }}">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     @livewireStyles  
 </head>
 <body>
     <div class="container-scroller">
-        @include('layouts.inc.admin.navbar')
+        @include('layouts.inc.store.navbar')
         <div class="container-fluid page-body-wrapper">
            <div class="main-panel">
             <div class="content-wrapper">
