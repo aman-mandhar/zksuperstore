@@ -16,34 +16,35 @@
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"><a class="nav-link" href="{{ '/items/create' }}" target="_blank">Add Product</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/items/edit' }} target="_blank">Edit Product</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/itemsin/create' }} target="_blank">Add Item</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/itemsin/edit' }} target="_blank">Edit Item</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/items' }}" target="_blank">Product list</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/stocks' }}" target="_blank">Stock List</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/add' }}" target="_blank">Add Stock</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/transfer' }}" target="_blank">Stock Transfer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/bill' }}" target="_blank">Bill Genreation</a></li>
           </ul>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/forms/basic_elements.html">
           <i class="mdi mdi-view-headline menu-icon"></i>
-          <span class="menu-title">Referrals</span>
+          <span class="menu-title"><a class="nav-link" href="{{ 'ref/commission' }}" target="_blank">Referred Commission</a></span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/charts/chartjs.html">
           <i class="mdi mdi-chart-pie menu-icon"></i>
-          <span class="menu-title">Assets</span>
-        </a>
+          <span class="menu-title"><a class="nav-link" href="{{ 'ref/pools' }}" target="_blank">Reward Points</a></span>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/tables/basic-table.html">
           <i class="mdi mdi-grid-large menu-icon"></i>
-          <span class="menu-title">Sale</span>
+          <span class="menu-title">Admin</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="pages/icons/mdi.html">
           <i class="mdi mdi-emoticon menu-icon"></i>
-          <span class="menu-title">Stock</span>
+          <span class="menu-title">Admin</span>
         </a>
       </li>
       <li class="nav-item">
@@ -54,9 +55,9 @@
         </a>
         <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Add </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Edit </a></li>
+            <li class="nav-item"> <a class="nav-link" href="auth\register"> Add </a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> List </a></li>
+            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Edit / Delete </a></li>
           </ul>
         </div>
       </li>

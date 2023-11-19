@@ -102,6 +102,7 @@
                                     <option value="3" {{ old('user_role') == '3' ? 'selected' : '' }}>Warehouse</option>
                                     <option value="4" {{ old('user_role') == '4' ? 'selected' : '' }}>Sub-Warehouse</option>
                                     <option value="5" {{ old('user_role') == '5' ? 'selected' : '' }}>Employee</option>
+                                    <option value="6" {{ old('user_role') == '6' ? 'selected' : '' }}>Merchant</option>
                                     <!-- Add more options for different user roles if needed -->
                                 </select>
 
@@ -126,6 +127,21 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="gst_no" class="col-md-4 col-form-label text-md-end">{{ __('GST Number') }}</label>
+                        
+                            <div class="col-md-6">
+                                <input id="gst_no" type="text" class="form-control @error('gst_no') is-invalid @enderror" name="gst_no" value="{{ old('gst_no') }}" autocomplete="gst_no">
+                        
+                                @error('gst_no')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

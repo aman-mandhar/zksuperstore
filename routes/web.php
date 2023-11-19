@@ -72,6 +72,27 @@ Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'e
 Route::put('/items/{item}', [App\Http\Controllers\ItemController::class, 'update'])->name('items.update');
 Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'destroy'])->name('items.destroy');
 
+use App\Http\Controllers\StockController;
+
+// Display a listing of the items.
+Route::get('/stocks', [StockController::class, 'index'])->name('Stocks.index');
+
+// Show the form for creating a new item.
+Route::get('/stocks/add', [StockController::class, 'create'])->name('Stocks.create');
+
+// Store a newly created item in storage.
+Route::post('/stocks', [StockController::class, 'store'])->name('Stocks.store');
+
+// Show the form for editing the specified item.
+Route::get('/stocks/{id}/edit', [StockController::class, 'edit'])->name('Stocks.edit');
+
+// Update the specified item in storage.
+Route::put('/stocks/{id}', [StockController::class, 'update'])->name('Stocks.update');
+
+// Remove the specified item from storage.
+Route::delete('/stocks/{stock}', [StockController::class, 'destroy'])->name('Stocks.destroy');
+
+
 
 
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('pur_value', 8, 2); // Purchase value
             $table->decimal('mrp', 8, 2); // Maximum retail price
             $table->decimal('sale_price', 8, 2); // Sale price
-            $table->integer('pts'); // Points
+            $table->decimal('pts', 8, 2); // Points
             $table->string('Location'); // Location (Warehouse?), assuming it could be optional
             $table->string('pur_bill_no'); // Purchase bill number
             $table->string('merchant'); // Merchant name or ID

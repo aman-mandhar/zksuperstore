@@ -72,6 +72,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'mobile_number' => ['required', 'string', 'unique:users', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
+            'gst_no' => ['nullable', 'string', 'max:255'],
         ]);
     }
 
@@ -85,6 +86,7 @@ class RegisterController extends Controller
         'password' => Hash::make($data['password']),
         'user_role' => $data['user_role'], // Use the value from the form
         'city' => $data['city'],
+        'gst_no' => $data['gst_no'],
     ]);
 }
 
