@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="nav-logo">
-    <a href="#"><img src="{{ asset('assets/user/images/logo.png') }}" alt="logo"></a>
+    <a href="/"><img src="{{ asset('assets/user/images/logo.png') }}" alt="logo"></a>
   </div>
   <div class="address">
     <a href="#" class="deliver">Deliver</a>
