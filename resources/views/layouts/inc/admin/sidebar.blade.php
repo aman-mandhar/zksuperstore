@@ -25,11 +25,19 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <i class="mdi mdi-view-headline menu-icon"></i>
-          <span class="menu-title"><a class="nav-link" href="{{ 'ref/commission' }}" target="_blank">Referred Commission</a></span>
+          <span class="menu-title">Reffered</span>
+          <i class="menu-arrow"></i>
         </a>
-      </li>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"><a class="nav-link" href="{{ 'ref/commission' }}" target="_blank">Commission</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/ref' }}" target="_blank">Refferals</a></li>
+            
+          </ul>
+        </div>      
+          
       <li class="nav-item">
         <a class="nav-link" href="pages/charts/chartjs.html">
           <i class="mdi mdi-chart-pie menu-icon"></i>
