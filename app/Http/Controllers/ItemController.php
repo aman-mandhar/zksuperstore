@@ -15,6 +15,17 @@ class ItemController extends Controller
         return view('items.index', compact('items'));
     }
 
+    public function search(Request $request)
+{
+    $searchTerm = $request->term;
+
+    $items = Item::where('name', 'like', '%' . $searchTerm . '%')
+        ->pluck('name', 'id');
+
+    return response()->json($items);
+}
+
+
     // Show the form for creating a new item.
     public function create()
     {

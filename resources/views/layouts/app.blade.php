@@ -15,6 +15,8 @@
     
     <!-- Style -->
     
+
+    
     <link rel="stylesheet" href="{{ asset('store/css/style.css') }}">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     @livewireStyles  
@@ -32,6 +34,8 @@
         </div>
       </div>
 
-@livewireScripts
+      
+      @livewireScripts
+
 </body>
 </html>

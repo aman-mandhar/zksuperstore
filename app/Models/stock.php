@@ -26,12 +26,6 @@ class Stock extends Model
         'sale_price',
         'tot_issued_points',
         'wh_id',
-        'sub_wh_id',
-        'store_id',
-        'customer_id',
-        'ref_id',
-        'order_id',
-        'order_date',
     ];
 
     // Add any relationships or additional methods as needed
