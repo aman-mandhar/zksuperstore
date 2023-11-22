@@ -10,5 +10,11 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'prod_cat', 'prod_pic'];
+    protected $fillable = ['name', 'description', 'prod_cat', 'prod_pic', 'type', 'gst'];
+
+    public function stocks()
+{
+    return $this->hasMany(Stock::class);
 }
+}
+

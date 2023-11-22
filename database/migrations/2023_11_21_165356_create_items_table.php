@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('Items', function (Blueprint $table) {
             $table->id(); // Auto-increment ID
             $table->string('name'); // Product name
-            $table->string('Description'); // Product Descrition
+            $table->string('gst')->nullable()->default('0'); //GST % applicable at item
+            $table->string('description')->nullable(); // Product Descrition
+            $table->string('type')->default('packet');
             $table->string('prod_cat'); // Product category
             $table->string('prod_pic')->nullable(); // Product picture (assuming you'd store the file path here)
             $table->timestamps();

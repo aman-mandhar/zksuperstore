@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\StockController;
 use Illuminate\Contracts\Cache\Store;
 
 /*
@@ -74,16 +75,15 @@ Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'des
 Route::get('/items/search', 'ItemController@search');
 
 
-use App\Http\Controllers\StockController;
 
 // Display a listing of the items.
 Route::get('/stocks', [StockController::class, 'index'])->name('stocks.index');
 
 // Show the form for creating a new item.
-Route::get('/stocks/add', [App\Http\Controllers\StockController::class, 'create'])->name('stocks.create');
+Route::get('/stocks/add', [StockController::class, 'create'])->name('stocks.create');
 
 // Store a newly created item in storage.
-Route::post('/stocks', [App\Http\Controllers\StockController::class, 'store'])->name('stocks.store');
+Route::post('/stocks', [StockController::class, 'store'])->name('stocks.store');
 
 // Show the form for editing the specified item.
 Route::get('/stocks/{id}/edit', [StockController::class, 'edit'])->name('stocks.edit');

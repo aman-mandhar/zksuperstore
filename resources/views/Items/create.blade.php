@@ -24,6 +24,17 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="gst" class="col-md-4 col-form-label text-md-right">{{ __('GST Rate') }}</label>
+                            <div class="col-md-6">
+                                <input id="gst" type="text" class="form-control @error('gst') is-invalid @enderror" name="gst" value="{{ old('gst') }}" required autofocus>
+                                @error('gst')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Product Description') }}</label>
@@ -36,7 +47,21 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label for="prod_cat" class="col-md-4 col-form-label text-md-right">{{ __('Product Type') }}</label>
+                            <div class="col-md-6">
+                                <select id="type" class="form-control @error('type') is-invalid @enderror" name="type" required>
+                                    <option value="Packet">Packet</option>
+                                    <option value="Loose">Loose</option>
+                                    
+                                </select>
+                                @error('type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="prod_cat" class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
                             <div class="col-md-6">

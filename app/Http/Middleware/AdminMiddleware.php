@@ -23,6 +23,7 @@ class AdminMiddleware
      * 3-Warehouse
      * 4-Sub-Warehouse
      * 5-Employee
+     * 6-Merchant
      */
 
      public function handle(Request $request, Closure $next): Response

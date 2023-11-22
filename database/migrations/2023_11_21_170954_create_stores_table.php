@@ -9,10 +9,12 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id(); // Auto-increment ID
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('store_add'); // Store Address
-			$table->foreign('manager_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('city');
             $table->string('manager');  // Manager's Name            
-			$table->string('mobile_no'); // Mobile Number
+			$table->string('mobile_no', 10); // Mobile Number
             $table->timestamps(); // Adds created_at and updated_at
 
             // If manager_user_id is a foreign key referencing users table:

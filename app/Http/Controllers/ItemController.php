@@ -20,7 +20,7 @@ class ItemController extends Controller
     $searchTerm = $request->term;
 
     $items = Item::where('name', 'like', '%' . $searchTerm . '%')
-        ->pluck('name', 'id');
+        ->pluck('name', 'id', 'gst', 'type');
 
     return response()->json($items);
 }
@@ -39,6 +39,8 @@ class ItemController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'prod_cat' => 'required|string',
+            'type' => 'required|string|max:255',
+            'gst' => 'required|string|max:255',
             'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
