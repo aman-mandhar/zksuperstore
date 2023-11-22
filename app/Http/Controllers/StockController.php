@@ -1,7 +1,7 @@
 <?php
 
-
 namespace App\Http\Controllers;
+
 use App\Models\Item;
 use App\Models\Stock;
 use App\Providers\RouteServiceProvider;
@@ -12,131 +12,89 @@ use AuthenticatesUsers;
 
 class StockController extends Controller
 {
-    /**
-     * Display a listing of the items.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $stocks = Stock::all();
-        return view('stocks.index', compact('stocks'));
+        return view('stocks.index', ['stocks' => $stocks]);
     }
 
-    /**
-     * Show the form for creating a new item.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        // Need to fetch some additional data for the form, e.g., a list of items
-        $items = Item::pluck('name', 'id');
-        $itemTypes = Item::pluck('type', 'id');
-    
-        return view('stocks.add', compact('items', 'itemTypes'));
-        
-            }
+        // You might need to pass some data to the view, e.g., a list of items
+        $items = Item::all(); // Assuming you have an Item model
+        return view('stocks.create', ['items' => $items]);
+    }
 
-    /**
-     * Store a newly created item in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        // Validate the request data
+        // Validate the request data as needed
         $validatedData = $request->validate([
             'name' => 'required|string',
             'item_id' => 'required|exists:items,id',
-            'measure', 
-            'qrcode',
-            'pur_value',
-            'tot_no_of_items',
-            'mrp',
-            'pur_bill_no',
-            'merchant',
-            'sale_price',
-            'tot_points',
-            'wh_id',
-            // Add other validation rules for other fields
+            'measure' => 'nullable|numeric',
+            'tot_no_of_items' => 'nullable|integer',
+            'qrcode' => 'nullable|string',
+            'pur_value' => 'required|numeric',
+            'mrp' => 'required|numeric',
+            'pur_bill_no' => 'required|string',
+            'merchant' => 'required|string',
+            'sale_price' => 'required|numeric',
+            'tot_points' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            // Add other validation rules for your fields
         ]);
-        $validatedData['wh_id'] = auth()->user()->id;
 
-        // Create a new stock instance
-        Stock::create($validatedData);
+        // Create a new stock record
+        $stock = Stock::create($validatedData);
 
-        // Redirect to the index page with a success message
-        return redirect()->route('stocks.index')->with('success', 'Stock added successfully!');
+        // Redirect to the index page or show the created stock details
+        return redirect()->route('stocks.index')->with('success', 'Stock created successfully');
     }
 
-    /**
-     * Show the form for editing the specified item.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function show(Stock $stock)
     {
-        // Find the stock by ID
-        $stock = Stock::findOrFail($id);
-
-        // You might need to fetch some additional data for the form, e.g., a list of items
-        $items = Item::all();
-        return view('stocks.edit', compact('stock', 'items'));
-
-        
+        return view('stocks.show', ['stock' => $stock]);
     }
 
-    /**
-     * Update the specified item in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function edit(Stock $stock)
     {
-        // Validate the request data
+        // You might need to pass some data to the view, e.g., a list of items
+        $items = Item::all(); // Assuming you have an Item model
+        return view('stocks.edit', ['stock' => $stock, 'items' => $items]);
+    }
+
+    public function update(Request $request, Stock $stock)
+    {
+        // Validate the request data as needed
         $validatedData = $request->validate([
             'name' => 'required|string',
             'item_id' => 'required|exists:items,id',
-            'measure', 
-            'qrcode',
-            'pur_value',
-            'tot_no_of_items',
-            'mrp',
-            'pur_bill_no',
-            'merchant',
-            'sale_price',
-            'tot_points',
-            'wh_id',
-            // Add other validation rules for other fields
+            'measure' => 'nullable|numeric',
+            'tot_no_of_items' => 'nullable|integer',
+            'qrcode' => 'nullable|string',
+            'pur_value' => 'required|numeric',
+            'mrp' => 'required|numeric',
+            'pur_bill_no' => 'required|string',
+            'merchant' => 'required|string',
+            'sale_price' => 'required|numeric',
+            'tot_points' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            // Add other validation rules for your fields
         ]);
 
-        // Find the stock by ID and update it
-        $stock = Stock::findOrFail($id);
+        // Update the stock record
         $stock->update($validatedData);
 
-        // Redirect to the index page with a success message
-        return redirect()->route('stocks.index')->with('success', 'Stock updated successfully!');
+        // Redirect to the index page or show the updated stock details
+        return redirect()->route('stocks.index')->with('success', 'Stock updated successfully');
     }
 
-    /**
-     * Remove the specified item from storage.
-     *
-     * @param  \App\Stock  $stock
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Stock $stock)
     {
-        // Delete the stock
+        // Delete the stock record
         $stock->delete();
 
-        // Redirect to the index page with a success message
-        return redirect()->route('stocks.index')->with('success', 'Stock deleted successfully!');
+        // Redirect to the index page or show a success message
+        return redirect()->route('stocks.index')->with('success', 'Stock deleted successfully');
     }
 }
-
-
