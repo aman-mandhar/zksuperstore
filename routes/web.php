@@ -63,6 +63,53 @@ Route::prefix('users')->middleware(['auth', 'isCustomers'])->group(function () {
 });
 
 
+use App\Http\Controllers\SubwarehouseController;
+
+// Display a listing of subwarehouses
+Route::get('/subwarehouses', [SubwarehouseController::class, 'index'])->name('subwarehouses.index');
+
+// Show the form for creating a new subwarehouse
+Route::get('/subwarehouses/create', [SubwarehouseController::class, 'create'])->name('subwarehouses.create');
+
+// Store a newly created subwarehouse in the database
+Route::post('/subwarehouses', [SubwarehouseController::class, 'store'])->name('subwarehouses.store');
+
+// Display the specified subwarehouse
+Route::get('/subwarehouses/{subwarehouse}', [SubwarehouseController::class, 'show'])->name('subwarehouses.show');
+
+// Show the form for editing the specified subwarehouse
+Route::get('/subwarehouses/{subwarehouse}/edit', [SubwarehouseController::class, 'edit'])->name('subwarehouses.edit');
+
+// Update the specified subwarehouse in the database
+Route::put('/subwarehouses/{subwarehouse}', [SubwarehouseController::class, 'update'])->name('subwarehouses.update');
+
+// Remove the specified subwarehouse from the database
+Route::delete('/subwarehouses/{subwarehouse}', [SubwarehouseController::class, 'destroy'])->name('subwarehouses.destroy');
+
+
+
+use App\Http\Controllers\RetailController;
+
+// Display a listing of retail stores
+Route::get('/retails', [RetailController::class, 'index'])->name('retails.index');
+
+// Show the form for creating a new retail store
+Route::get('/retails/create', [RetailController::class, 'create'])->name('retails.create');
+
+// Store a newly created retail store in the database
+Route::post('/retails', [RetailController::class, 'store'])->name('retails.store');
+
+// Display the specified retail store
+Route::get('/retails/{retail}', [RetailController::class, 'show'])->name('retails.show');
+
+// Show the form for editing the specified retail store
+Route::get('/retails/{retail}/edit', [RetailController::class, 'edit'])->name('retails.edit');
+
+// Update the specified retail store in the database
+Route::put('/retails/{retail}', [RetailController::class, 'update'])->name('retails.update');
+
+// Remove the specified retail store from the database
+Route::delete('/retails/{retail}', [RetailController::class, 'destroy'])->name('retails.destroy');
 
 
 
@@ -91,21 +138,5 @@ Route::delete('/stocks/{stock}', [App\Http\Controllers\StockController::class, '
 
 
 
-// Display a listing of the items.
-Route::get('/stores', [App\Http\Controllers\Store\StoreController::class, 'index'])->name('store.index');
 
-// Show the form for creating a new item.
-Route::get('/stores/create', [App\Http\Controllers\Store\StoreController::class, 'create'])->name('store.create');
-
-// Store a newly created item in storage.
-Route::post('/stores', [App\Http\Controllers\Store\StoreController::class, 'store'])->name('store.store');
-
-// Show the form for editing the specified item.
-Route::get('/stores/{store}/edit', [App\Http\Controllers\Store\StoreController::class, 'edit'])->name('store.edit');
-
-// Update the specified item in storage.
-Route::put('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'update'])->name('store.update');
-
-// Remove the specified item from storage.
-Route::delete('/stores/{store}', [App\Http\Controllers\Store\StoreController::class, 'destroy'])->name('store.destroy');
 
