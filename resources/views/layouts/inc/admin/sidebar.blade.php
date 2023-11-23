@@ -18,7 +18,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ '/items/create' }}" target="_blank">Add Product</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ '/items' }}" target="_blank">Product list</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ '/stocks' }}" target="_blank">Stock List</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/add' }}" target="_blank">Add Stock</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/create' }}" target="_blank">Add Stock</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/transfer' }}" target="_blank">Stock Transfer</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/bill' }}" target="_blank">Bill Genreation</a></li>
           </ul>
