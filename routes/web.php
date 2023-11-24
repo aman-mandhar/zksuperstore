@@ -133,10 +133,10 @@ Route::get('/stocks/{stock}/edit', [App\Http\Controllers\StockController::class,
 Route::put('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'update'])->name('stocks.update');
 Route::delete('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'destroy'])->name('stocks.destroy');
 
-
-
-
-
-
-
-
+Route::get('/transfers', [App\Http\Controllers\TransferController::class, 'index'])->name('transfers.index');
+Route::get('/transfers/create', [App\Http\Controllers\TransferController::class, 'create'])->name('transfers.create');
+Route::post('/transfers', [App\Http\Controllers\TransferController::class, 'store'])->name('transfers.store');
+Route::get('/transfers/{stock}', [App\Http\Controllers\TransferController::class, 'show'])->name('transfers.show');
+Route::get('/transfers/{stock}/edit', [App\Http\Controllers\TransferController::class, 'edit'])->name('transfers.edit');
+Route::put('/transfers/{stock}', [App\Http\Controllers\TransferController::class, 'update'])->name('transfers.update');
+Route::delete('/transfers/{stock}', [App\Http\Controllers\TransferController::class, 'destroy'])->name('transfers.destroy');
