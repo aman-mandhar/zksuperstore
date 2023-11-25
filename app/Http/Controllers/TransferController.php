@@ -18,33 +18,44 @@ use Illuminate\Http\Request;
 class TransferController extends Controller
 {
     public function index()
-    {
-        $transfers = Transfer::all();
-        $items = Item::all();
+{
+    $search = $request['search'] ?? "";
+    if ($search != "") {
+        // Where statement for search
+        $stocks = Stock::where('name', 'LIKE', $search)->get(); 
+    } else {
         $stocks = Stock::all();
-        $users = User::all();
-        $retails = Retail::all();
-        $subwarehouses = Subwarehouse::all();
-        return view('transfers.index', ['transfers' => $transfers], ['items' => $items], ['stocks' => $stocks], ['users' => $users], ['retails' => $retails], ['subwarehouses' => $subwarehouses],);
     }
 
-    public function create()
-{
     $transfers = Transfer::all();
     $items = Item::all();
-    $stocks = Stock::all();
     $users = User::all();
     $retails = Retail::all();
     $subwarehouses = Subwarehouse::all();
 
-    return view('transfers.create', [
-        'transfers' => $transfers,
-        'items' => $items,
-        'stocks' => $stocks,
-        'users' => $users,
-        'retails' => $retails,
-        'subwarehouses' => $subwarehouses,
-    ]);
+    return view('transfers.index', compact('transfers', 'items', 'stocks', 'users', 'retails', 'subwarehouses'));
+}
+
+    public function create(Request $request)
+{
+    $search = $request['search'] ?? "";
+    if ($search != "") {
+        // Where statement for search
+        $stocks = Stock::where('name', 'LIKE', "%$search%")->get(); 
+    } else {
+        $stocks = Stock::all();
+    }
+
+    $transfers = Transfer::all();
+    $items = Item::all();
+    $users = User::all();
+    $retails = Retail::all();
+    $subwarehouses = Subwarehouse::all();
+
+    return view('transfers.create', compact('transfers', 'items', 'stocks', 'users', 'retails', 'subwarehouses'));
+    
+    
+    
 }
 
 

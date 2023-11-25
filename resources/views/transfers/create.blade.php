@@ -8,10 +8,12 @@
         <h2>Stock Requirement</h2><br>
         <p><i>Per Item List</i></p>
         {{-- Search Form --}}
-        <form action="{{ route('items.index') }}" method="GET" class="mb-3">
+        <form action="" method="GET" class="col-3">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search by name or category" name="search" value="{{ request('search') }}">
-                <button type="submit" class="btn btn-outline-secondary">Search</button>
+                <input type="search" class="form-control" placeholder="Search by name or category" name="search" value="{{ request('search') }}">
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <a href="{{url('transfers/create')}}">
+                <button type="button" class="btn btn-outline-secondary">Reset</button></a>
             </div>
         </form>       
         
