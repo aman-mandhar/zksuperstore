@@ -18,12 +18,8 @@ return new class extends Migration
             $table->integer('qty')->nullable();
             $table->decimal('weight', 8,3)->nullable();
             $table->decimal('points', 8,2);
-            $table->unsignedBigInteger('subwarehouse_id')->nullable();
-            $table->foreign('subwarehouse_id')->references('id')->on('subwarehouses');
-            $table->unsignedBigInteger('retail_id')->nullable();
-            $table->foreign('retail_id')->references('id')->on('stores');
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->foreign('customer_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

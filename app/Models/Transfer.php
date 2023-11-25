@@ -14,31 +14,21 @@ class Transfer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'item_id',
+        'stock_id',
         'weight',
         'qty',
-        'subwarehouse_id',
-        'retail_id',
-        'customer_id',
+        'points',
+        'user_id',
     ];
-
-    public function item()
-    {
-        return $this->belongsTo(Item::class, 'item_id');
-    }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'customer_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function subwarehouse()
+    public function stock()
     {
-        return $this->belongsTo(Subwarehouse::class, 'subwarehouse_id');
-    }
-    public function retail()
-    {
-        return $this->belongsTo(Retail::class, 'retail_id');
+        return $this->belongsTo(Subwarehouse::class, 'stock_id');
     }
 
 }

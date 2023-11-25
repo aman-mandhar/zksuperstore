@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Contracts\Cache\Store;
 
 /*
@@ -89,6 +90,7 @@ Route::delete('/subwarehouses/{subwarehouse}', [SubwarehouseController::class, '
 
 
 use App\Http\Controllers\RetailController;
+use App\Models\Transfer;
 
 // Display a listing of retail stores
 Route::get('/retails', [RetailController::class, 'index'])->name('retails.index');
@@ -120,6 +122,9 @@ Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'e
 Route::put('/items/{item}', [App\Http\Controllers\ItemController::class, 'update'])->name('items.update');
 Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'destroy'])->name('items.destroy');
 Route::get('/items/search', 'ItemController@search');
+
+
+Route::post('/cart/add/{stockId}', [TransferController::class, 'addToCart'])->name('cart.addToCart');
 
 
 

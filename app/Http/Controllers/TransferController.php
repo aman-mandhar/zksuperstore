@@ -128,4 +128,31 @@ class TransferController extends Controller
         // Redirect to the index page or show a success message
         return redirect()->route('transfers.index')->with('success', 'Stock transfer deleted successfully');
     }
+
+    public function addToCart(Request $request, $stockId)
+    {
+        // Find the stock by ID
+        $stock = Stock::find($stockId);
+
+        if (!$stock) {
+            return redirect()->route('stocks.index')->with('error', 'Stock not found.');
+        }
+
+        // Add the stock to the cart
+        $cartItem = [
+            'stock_id' => $stock->id,
+            'qty' => $request->input('qty', 1), // Assuming the quantity is provided in the request
+            'weight' => $request->input('weight', 0.000), // Assuming the weight is provided in the request
+            'points' => $stock->points, // Assuming points are associated with the stock
+            'user_id' => Auth::id(), // Assuming the user is authenticated
+        ];
+
+        // Create a new Transfer record in the database
+        Transfer::create($cartItem);
+
+        return redirect()->route('transfer.create')->with('success', 'Stock added to cart.');
+    }
 }
+
+
+
