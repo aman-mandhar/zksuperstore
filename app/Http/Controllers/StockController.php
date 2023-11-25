@@ -30,7 +30,6 @@ class StockController extends Controller
         // Validate the request data as needed
         $validatedData = $request->validate([
             'name' => 'required|string',
-            'item_id' => 'required|exists:items,id',
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
             'qrcode' => 'nullable|string',
@@ -67,8 +66,7 @@ class StockController extends Controller
     {
         // Validate the request data as needed
         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'item_id' => 'required|exists:items,id',
+            'name' => 'required',
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
             'qrcode' => 'nullable|string',

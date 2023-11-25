@@ -19,11 +19,11 @@
                             <select name="name" id="name" class="form-control" required>
                                 <option value="" disabled selected>Select an item</option>
                                 @foreach($items as $item)
-                                    <option value="{{ $item->id }}" data-type="{{ $item->type }}">{{ $item->name }}</option>
+                                <option value="{{ $item->name }}" data-type="{{ $item->type }}">{{ $item->name }}</option>
+
                                 @endforeach
                             </select>
-                        </div>
-            
+                                   
                         {{-- Measure field --}}
                         <div class="form-group" id="measureField" style="display: none;">
                             <label for="measure">Measure (in kilograms and grams)</label>
@@ -36,7 +36,7 @@
                             <input type="number" name="tot_no_of_items" id="tot_no_of_items" class="form-control">
                         </div>
             
-                        <input type="text" name="item_id" id="item_id" readonly>
+                        
                     
                     <div class="form-group row">
                         <label for="pur_value" class="col-md-4 col-form-label text-md-right">{{ __('Purchase Value of Item') }}</label>
@@ -108,8 +108,10 @@
                     @enderror
                 </div>
                            {{-- Hidden user_id field --}}
-            <input type="text" name="user_id" value="{{ auth()->id() }}" readonly>
+                           <div class="form-group">
+                           <input type="text" name="user_id" value="{{ auth()->id() }}" readonly>
             </div>
+        </div>
            
 
             
@@ -130,10 +132,8 @@
 </div>
 
 <script>
-    // Script to update item_id and toggle visibility of measure/tot_no_of_items based on the selected name
     document.getElementById('name').addEventListener('change', function () {
         var selectedItem = this.options[this.selectedIndex];
-        var itemIdInput = document.getElementById('item_id');
         var itemType = selectedItem.getAttribute('data-type');
         var measureField = document.getElementById('measureField');
         var totNoOfItemsField = document.getElementById('totNoOfItemsField');
@@ -142,8 +142,11 @@
         measureField.style.display = 'none';
         totNoOfItemsField.style.display = 'none';
 
+        // Fetch the 'type' attribute from the selected item
+        var itemTypeName = selectedItem.getAttribute('data-type');
+        
         // Show the relevant field based on the item type
-        if (itemType === 'Loose') {
+        if (itemTypeName === 'Loose') {
             measureField.style.display = 'block';
             // Reset the tot_no_of_items field
             document.getElementById('tot_no_of_items').value = '';
@@ -152,13 +155,8 @@
             // Reset the measure field
             document.getElementById('measure').value = '';
         }
-
-        // Update item_id
-        itemIdInput.value = selectedItem.value; // Use value instead of getAttribute('data-item-id')
     });
 </script>
-
-
 
    
 @endsection

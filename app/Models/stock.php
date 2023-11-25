@@ -10,7 +10,6 @@ class Stock extends Model
 {
     protected $fillable = [
         'name',
-        'item_id',
         'measure',
         'qrcode',
         'pur_value',
@@ -22,11 +21,6 @@ class Stock extends Model
         'tot_points',
         'user_id',
     ];
-
-    public function item()
-    {
-        return $this->belongsTo(Item::class, 'item_id');
-    }
 
     public function user()
     {

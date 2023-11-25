@@ -29,15 +29,24 @@ class TransferController extends Controller
     }
 
     public function create()
-    {
-        $transfers = Transfer::all();
-        $items = Item::all();
-        $stocks = Stock::all();
-        $users = User::all();
-        $retails = Retail::all();
-        $subwarehouses = Subwarehouse::all();
-        return view('transfers.create', ['transfers' => $transfers], ['items' => $items], ['stocks' => $stocks], ['users' => $users], ['retails' => $retails], ['subwarehouses' => $subwarehouses],);
-    }
+{
+    $transfers = Transfer::all();
+    $items = Item::all();
+    $stocks = Stock::all();
+    $users = User::all();
+    $retails = Retail::all();
+    $subwarehouses = Subwarehouse::all();
+
+    return view('transfers.create', [
+        'transfers' => $transfers,
+        'items' => $items,
+        'stocks' => $stocks,
+        'users' => $users,
+        'retails' => $retails,
+        'subwarehouses' => $subwarehouses,
+    ]);
+}
+
 
     public function store(Request $request)
     {
@@ -72,7 +81,13 @@ class TransferController extends Controller
         $users = User::all();
         $retails = Retail::all();
         $subwarehouses = Subwarehouse::all();
-        return view('transfers.edit', ['transfers' => $transfers], ['items' => $items], ['stocks' => $stocks], ['users' => $users], ['retails' => $retails], ['subwarehouses' => $subwarehouses],);
+        return view('transfers.edit', [
+        'transfers' => $transfers,
+        'items' => $items,
+        'stocks' => $stocks,
+        'users' => $users,
+        'retails' => $retails,
+        'subwarehouses' => $subwarehouses,]);
     }
 
     public function update(Request $request, transfer $transfer)

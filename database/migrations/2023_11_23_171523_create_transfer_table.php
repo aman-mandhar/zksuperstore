@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
-            $table->foreign('item_id')->references('id')->on('stocks');
+            $table->unsignedBigInteger('stock_id');
+            $table->foreign('stock_id')->references('id')->on('stocks');
             $table->integer('qty')->nullable();
             $table->decimal('weight', 8,3)->nullable();
+            $table->decimal('points', 8,2);
             $table->unsignedBigInteger('subwarehouse_id')->nullable();
             $table->foreign('subwarehouse_id')->references('id')->on('subwarehouses');
             $table->unsignedBigInteger('retail_id')->nullable();
