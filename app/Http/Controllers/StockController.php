@@ -20,8 +20,15 @@ class StockController extends Controller
 
     public function create()
     {
-        // You might need to pass some data to the view, e.g., a list of items
-        $items = Item::all(); // Assuming you have an Item model
+        $search = $request['search'] ?? "";
+
+            if ($search != "") {
+                // Where statement for search
+                $items = Item::where('name', 'LIKE', '%' . $search . '%')->get();
+                
+            } else {
+                $items = Item::all();
+            }
         return view('stocks.create', ['items' => $items]);
     }
 
@@ -40,6 +47,7 @@ class StockController extends Controller
             'sale_price' => 'required|numeric',
             'tot_points' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
+            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // Add other validation rules for your fields
         ]);
 
@@ -77,6 +85,7 @@ class StockController extends Controller
             'sale_price' => 'required|numeric',
             'tot_points' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
+            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // Add other validation rules for your fields
         ]);
 

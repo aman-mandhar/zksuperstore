@@ -34,9 +34,6 @@
             <tbody>
                 @foreach($stocks as $stock)
             <tr>
-                <td>
-                    <img src="{{ asset($items->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
-                </td>
             <td>{{ $stock->name }}</td>
             <td>{{ $stock->sale_price }}</td>
             <td>{{ $stock->tot_points }}</td>

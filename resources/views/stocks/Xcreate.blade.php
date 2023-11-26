@@ -10,19 +10,20 @@
                 <div class="card-header">{{ __('Add Stock') }}</div>
 
                 <div class="card-body">
-                {{-- Search Form --}}
-                <form action="{{ route('items.index') }}" method="GET" class="mb-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search by name or category" name="search" value="{{ request('search') }}">
-                        <button type="submit" class="btn btn-outline-secondary">Search</button>
-                    </div>
-                <form method="post" action="{{ route('stocks.store') }}">
+                    <form method="post" action="{{ route('stocks.store') }}">
                         @csrf {{-- CSRF protection --}}
             
                         {{-- Input fields for the stock --}}
                         <div class="form-group">
-                            <input type="text" name="measure" id="measure" class="form-control" value="{{ $items->name }}" readonly>
-                        </div>
+                            <label for="name">Item Name</label>
+                            <select name="name" id="name" class="form-control" required>
+                                <option value="" disabled selected>Select an item</option>
+                                @foreach($items as $item)
+                                <option value="{{ $item->name }}" data-type="{{ $item->type }}">{{ $item->name }}</option>
+
+                                @endforeach
+                            </select>
+                                   
                         {{-- Measure field --}}
                         <div class="form-group" id="measureField" style="display: none;">
                             <label for="measure">Measure (in kilograms and grams)</label>
@@ -124,7 +125,6 @@
                             </div>
                         </div>
                     </form>
-                    </form> 
                 </div>
             </div>
         </div>

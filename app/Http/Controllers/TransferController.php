@@ -22,9 +22,7 @@ class TransferController extends Controller
     $search = $request['search'] ?? "";
 
     if ($search != "") {
-        // Where statement for search
-        $items = Item::where('name', 'LIKE', '%' . $search . '%')->get();
-        $stocks = Stock::whereIn('name', $items->pluck('name'))->get();
+        $stocks = Stock::where('name', 'LIKE', $search)->get();
     } else {
         $stocks = Stock::all();
     }

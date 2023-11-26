@@ -20,6 +20,7 @@ class Stock extends Model
         'sale_price',
         'tot_points',
         'user_id',
+        'img',
     ];
 
     public function user()
