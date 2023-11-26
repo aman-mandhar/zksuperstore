@@ -28,7 +28,7 @@ class Transfer extends Model
 
     public function stock()
     {
-        return $this->belongsTo(Subwarehouse::class, 'stock_id');
+        return $this->belongsTo(Stock::class, 'stock_id');
     }
 
 }

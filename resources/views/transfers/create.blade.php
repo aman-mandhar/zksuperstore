@@ -23,13 +23,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Your user ID</th>
-                    <th>Stock ID</th>
                     <th>Item Name</th>
                     <th>Sale Peice<br><i>per item/kg</i></th>
                     <th>points on Sale</th>
-                    <th>Total<br>In Items</th>
-                    <th>In Kilos</th>
                     <th>Requirement</th>
                     
 
@@ -38,14 +34,13 @@
             <tbody>
                 @foreach($stocks as $stock)
             <tr>
-            <td><input type="text" name="user_id" value="{{ auth()->id() }}" readonly></td>
-            <td><input type="text" name="stock_id" value="{{ $stock->id }}" readonly></td>
-            <td><input type="text" name="item_name" value="{{ $stock->name }}" readonly></td>
-            <td><input type="text" name="sale_price" value="{{ $stock->sale_price }}" readonly></td>
-            <td><input type="text" name="points" value="{{ $stock->tot_points }}" readonly></td>
-            <td>{{ $stock->tot_no_of_items }}</td>
-            <td>{{ $stock->measure }}</td>
-            <td><input type="number" name="items_required" id="items_required" class="form-control"></td>
+                <td>
+                    <img src="{{ asset($items->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
+                </td>
+            <td>{{ $stock->name }}</td>
+            <td>{{ $stock->sale_price }}</td>
+            <td>{{ $stock->tot_points }}</td>
+            <td><input type="number" name="items_required" id="items_required" class="form-control" placeholder="3Kg -> 3 or 5 Items ->5"></td>
         </tr>
   @endforeach
            </tbody>

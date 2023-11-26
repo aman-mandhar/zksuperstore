@@ -20,12 +20,15 @@ class TransferController extends Controller
     public function index()
 {
     $search = $request['search'] ?? "";
+
     if ($search != "") {
         // Where statement for search
-        $stocks = Stock::where('name', 'LIKE', $search)->get(); 
+        $items = Item::where('name', 'LIKE', '%' . $search . '%')->get();
+        $stocks = Stock::whereIn('name', $items->pluck('name'))->get();
     } else {
         $stocks = Stock::all();
     }
+    
 
     $transfers = Transfer::all();
     $items = Item::all();
