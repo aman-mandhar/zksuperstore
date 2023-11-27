@@ -20,23 +20,43 @@ class StockController extends Controller
 
     public function create()
     {
-        $search = $request['search'] ?? "";
-
-            if ($search != "") {
-                // Where statement for search
-                $items = Item::where('name', 'LIKE', '%' . $search . '%')->get();
-                
-            } else {
-                $items = Item::all();
-            }
-        return view('stocks.create', ['items' => $items]);
+        $items = Item::all();
+        return view('stocks.create', [
+            'items' => $items   
+        ]);
     }
+    
 
-    public function store(Request $request)
-    {
-        // Validate the request data as needed
-        $validatedData = $request->validate([
-            'name' => 'required|string',
+public function store(Request $request)
+{
+    // Validate the request data as needed
+    $validatedData = $request->validate([
+        'selected_items.*' => 'required|exists:items,id',
+        'items_required.*' => 'required|numeric',
+        'prod_pics.*' => 'required|string',
+        'name' => 'required',
+        'measure' => 'nullable|numeric',
+        'tot_no_of_items' => 'nullable|integer',
+        'qrcode' => 'nullable|string',
+        'pur_value' => 'required|numeric',
+        'gst' => 'nullable|numeric',
+        'cgst' => 'nullable|numeric',
+        'mrp' => 'required|numeric',
+        'sale_price' => 'required|numeric',
+        'pur_bill_no' => 'nullable|string',
+        'merchant' => 'nullable|string',
+        'tot_points' => 'required|numeric',
+        'user_id' => 'required|exists:users,id',
+        
+    ]);
+
+    // Loop through the submitted items and create a stock record for each
+    foreach ($validatedData['selected_items'] as $key => $selectedItemId) {
+        Stock::create([
+            'item_id' => $selectedItemId,
+            'prod_pic' => $validatedData['prod_pics'][$key],
+            'items_required' => $validatedData['items_required'][$key],
+            'name' => 'required',
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
             'qrcode' => 'nullable|string',
@@ -47,19 +67,19 @@ class StockController extends Controller
             'sale_price' => 'required|numeric',
             'tot_points' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
-            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // Add other validation rules for your fields
+            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            // Add other fields as needed
         ]);
-
-        // Create a new stock record
-        $stock = Stock::create($validatedData);
-
-        // Redirect to the index page or show the created stock details
-        return redirect()->route('stocks.index')->with('success', 'Stock created successfully');
     }
 
+    // Redirect to the index page or show a success message
+    return redirect()->route('stocks.index')->with('success', 'Stock created successfully');
+}
+
+    
     public function show(Stock $stock)
     {
+        
         return view('stocks.show', ['stock' => $stock]);
     }
 
@@ -74,6 +94,10 @@ class StockController extends Controller
     {
         // Validate the request data as needed
         $validatedData = $request->validate([
+            'selected_items.*' => 'required|exists:items,id',
+            'items_required.*' => 'required|numeric',
+            'prod_pics.*' => 'required|string',
+            'additional_field' => 'required|string',
             'name' => 'required',
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
@@ -85,12 +109,30 @@ class StockController extends Controller
             'sale_price' => 'required|numeric',
             'tot_points' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
-            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             // Add other validation rules for your fields
         ]);
 
         // Update the stock record
-        $stock->update($validatedData);
+        foreach ($validatedData['selected_items'] as $key => $selectedItemId) {
+        $stock->update([
+            'item_id' => $selectedItemId,
+            'prod_pic' => $validatedData['prod_pics'][$key],
+            'items_required' => $validatedData['items_required'][$key],
+            'name' => 'required',
+            'measure' => 'nullable|numeric',
+            'tot_no_of_items' => 'nullable|integer',
+            'qrcode' => 'nullable|string',
+            'pur_value' => 'required|numeric',
+            'mrp' => 'required|numeric',
+            'pur_bill_no' => 'required|string',
+            'merchant' => 'required|string',
+            'sale_price' => 'required|numeric',
+            'tot_points' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            // Add other fields as needed
+        ]);}
 
         // Redirect to the index page or show the updated stock details
         return redirect()->route('stocks.index')->with('success', 'Stock updated successfully');
