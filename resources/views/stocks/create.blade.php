@@ -16,6 +16,7 @@
                         <input type="text" class="form-control" placeholder="Search by name or category" name="search" value="{{ request('search') }}">
                         <button type="submit" class="btn btn-outline-secondary">Search</button>
                     </div>
+               
                 <form method="post" action="{{ route('stocks.store') }}">
                         @csrf {{-- CSRF protection --}}
             
