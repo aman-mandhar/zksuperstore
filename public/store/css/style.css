@@ -270,4 +270,7 @@ header {
 .footer-items li a:hover {
   text-decoration: underline;
 }
+.hidden-row {
+  display: none;
+}
 

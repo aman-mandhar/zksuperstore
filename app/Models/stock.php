@@ -12,18 +12,22 @@ class Stock extends Model
         'item_id',
         'prod_pic',
         'name',
+        'description',
+        'type',
+        'prod_cat',
         'measure',
         'tot_no_of_items',
-        'qrcode',
         'pur_value',
         'cgst',
         'sgst',
         'mrp',
         'sale_price',
+        'gst',
         'tot_points',
         'pur_bill_no',
         'merchant',
         'user_id',
+        'qrcode',
         ];
 
     // Relationships

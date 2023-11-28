@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Stock;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 //use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -13,16 +14,27 @@ use AuthenticatesUsers;
 class StockController extends Controller
 {
     public function index()
-    {
-        $stocks = Stock::all();
-        return view('stocks.index', ['stocks' => $stocks]);
-    }
+{
+    // Assuming you want to get all users with user_role = 6 as merchants
+    $merchants = User::where('user_role', '=', '6')->get();
+
+    // Fetch all stocks
+    $stocks = Stock::all();
+
+    // Pass the fetched data to the view
+    return view('stocks.index', [
+        'stocks' => $stocks,
+        'merchants' => $merchants,
+    ]);
+}
 
     public function create()
     {
         $items = Item::all();
+        $merchants = User::where('user_role', '=', '6')->get(); // Retrieve the merchants
         return view('stocks.create', [
-            'items' => $items   
+            'items' => $items,
+            'merchants' => $merchants,
         ]);
     }
     
@@ -32,7 +44,8 @@ public function store(Request $request)
     // Validate the request data as needed
     $validatedData = $request->validate([
         'selected_items.*' => 'required|exists:items,id',
-        'prod_pics.*' => 'required|string',
+        'item_id.*' => 'required',
+        'prod_pic.*' => 'required|string',
         'name' => 'required',
         'description' => 'required',
         'type' => 'required',
@@ -47,17 +60,18 @@ public function store(Request $request)
         'gst' => 'required',
         'tot_points' => 'required|numeric',
         'pur_bill_no' => 'required|string',
-        'merchant' => 'required|string',
+        'merchant' => 'required||exists:users,id',
         'user_id' => 'required|exists:users,id',
         'qrcode' => 'nullable|string',
         ]);
-
+        $userId = Auth::id();
     // Loop through the submitted items and create a stock record for each
+
     foreach ($validatedData['selected_items'] as $key => $selectedItemId) {
         Stock::create([
             'item_id' => $selectedItemId,
             'prod_pic' => $validatedData['prod_pics'][$key],
-            'name' => 'required',
+            'name' => $validatedData['prod_pics'][$key],
             'description' => $validatedData['description'][$key],
             'type' => $validatedData['types'][$key],
             'prod_cat' => $validatedData['prod_cat'][$key],
@@ -72,7 +86,7 @@ public function store(Request $request)
             'tot_points' => 'required|numeric',
             'pur_bill_no' => 'required|string',
             'merchant' => 'required|string',
-            'user_id' => 'required|exists:users,id',
+            'user_id' => $userId,
             'qrcode' => 'nullable|string',
             // Add other fields as needed
         ]);
