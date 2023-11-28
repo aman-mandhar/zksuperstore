@@ -11,21 +11,20 @@ class Stock extends Model
     protected $fillable = [
         'item_id',
         'prod_pic',
-        'items_required',
-        'additional_field',
         'name',
         'measure',
         'tot_no_of_items',
         'qrcode',
         'pur_value',
+        'cgst',
+        'sgst',
         'mrp',
-        'pur_bill_no',
-        'merchant',
         'sale_price',
         'tot_points',
+        'pur_bill_no',
+        'merchant',
         'user_id',
-        'img',
-    ];
+        ];
 
     // Relationships
     public function item()

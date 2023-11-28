@@ -32,48 +32,54 @@ public function store(Request $request)
     // Validate the request data as needed
     $validatedData = $request->validate([
         'selected_items.*' => 'required|exists:items,id',
-        'items_required.*' => 'required|numeric',
         'prod_pics.*' => 'required|string',
         'name' => 'required',
+        'description' => 'required',
+        'type' => 'required',
+        'prod_cat' => 'required',
         'measure' => 'nullable|numeric',
         'tot_no_of_items' => 'nullable|integer',
-        'qrcode' => 'nullable|string',
         'pur_value' => 'required|numeric',
-        'gst' => 'nullable|numeric',
         'cgst' => 'nullable|numeric',
+        'sgst' => 'nullable|numeric',
         'mrp' => 'required|numeric',
         'sale_price' => 'required|numeric',
-        'pur_bill_no' => 'nullable|string',
-        'merchant' => 'nullable|string',
+        'gst' => 'required',
         'tot_points' => 'required|numeric',
+        'pur_bill_no' => 'required|string',
+        'merchant' => 'required|string',
         'user_id' => 'required|exists:users,id',
-        
-    ]);
+        'qrcode' => 'nullable|string',
+        ]);
 
     // Loop through the submitted items and create a stock record for each
     foreach ($validatedData['selected_items'] as $key => $selectedItemId) {
         Stock::create([
             'item_id' => $selectedItemId,
             'prod_pic' => $validatedData['prod_pics'][$key],
-            'items_required' => $validatedData['items_required'][$key],
             'name' => 'required',
+            'description' => $validatedData['description'][$key],
+            'type' => $validatedData['types'][$key],
+            'prod_cat' => $validatedData['prod_cat'][$key],
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
-            'qrcode' => 'nullable|string',
             'pur_value' => 'required|numeric',
+            'cgst' => 'nullable|numeric',
+            'sgst' => 'nullable|numeric',
             'mrp' => 'required|numeric',
+            'sale_price' => 'required|numeric',
+            'gst' => $validatedData['gst'][$key],
+            'tot_points' => 'required|numeric',
             'pur_bill_no' => 'required|string',
             'merchant' => 'required|string',
-            'sale_price' => 'required|numeric',
-            'tot_points' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
-            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'qrcode' => 'nullable|string',
             // Add other fields as needed
         ]);
     }
 
     // Redirect to the index page or show a success message
-    return redirect()->route('stocks.index')->with('success', 'Stock created successfully');
+    return redirect()->route('stocks.create')->with('success', 'Stock created successfully');
 }
 
     
@@ -94,22 +100,25 @@ public function store(Request $request)
     {
         // Validate the request data as needed
         $validatedData = $request->validate([
-            'selected_items.*' => 'required|exists:items,id',
-            'items_required.*' => 'required|numeric',
-            'prod_pics.*' => 'required|string',
-            'additional_field' => 'required|string',
-            'name' => 'required',
-            'measure' => 'nullable|numeric',
-            'tot_no_of_items' => 'nullable|integer',
-            'qrcode' => 'nullable|string',
-            'pur_value' => 'required|numeric',
-            'mrp' => 'required|numeric',
-            'pur_bill_no' => 'required|string',
-            'merchant' => 'required|string',
-            'sale_price' => 'required|numeric',
-            'tot_points' => 'required|numeric',
-            'user_id' => 'required|exists:users,id',
-            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'selected_items.*' => 'required|exists:items,id',
+        'prod_pics.*' => 'required|string',
+        'name' => 'required',
+        'description' => 'required',
+        'type' => 'required',
+        'prod_cat' => 'required',
+        'measure' => 'nullable|numeric',
+        'tot_no_of_items' => 'nullable|integer',
+        'pur_value' => 'required|numeric',
+        'cgst' => 'nullable|numeric',
+        'sgst' => 'nullable|numeric',
+        'mrp' => 'required|numeric',
+        'sale_price' => 'required|numeric',
+        'gst' => 'required',
+        'tot_points' => 'required|numeric',
+        'pur_bill_no' => 'required|string',
+        'merchant' => 'required|string',
+        'user_id' => 'required|exists:users,id',
+        'qrcode' => 'nullable|string',
             // Add other validation rules for your fields
         ]);
 
@@ -118,19 +127,23 @@ public function store(Request $request)
         $stock->update([
             'item_id' => $selectedItemId,
             'prod_pic' => $validatedData['prod_pics'][$key],
-            'items_required' => $validatedData['items_required'][$key],
             'name' => 'required',
+            'description' => $validatedData['description'][$key],
+            'type' => $validatedData['types'][$key],
+            'prod_cat' => $validatedData['prod_cat'][$key],
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
-            'qrcode' => 'nullable|string',
             'pur_value' => 'required|numeric',
+            'cgst' => 'nullable|numeric',
+            'sgst' => 'nullable|numeric',
             'mrp' => 'required|numeric',
+            'sale_price' => 'required|numeric',
+            'gst' => $validatedData['gst'][$key],
+            'tot_points' => 'required|numeric',
             'pur_bill_no' => 'required|string',
             'merchant' => 'required|string',
-            'sale_price' => 'required|numeric',
-            'tot_points' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
-            'img'=> 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'qrcode' => 'nullable|string',
             // Add other fields as needed
         ]);}
 
