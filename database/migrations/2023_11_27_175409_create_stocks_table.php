@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->string('prod_pic');
                 $table->string('name');
                 $table->string('description')->nullable(); // Product Descrition
-                $table->string('type')->default('packet');
+                $table->string('type');
                 $table->string('prod_cat'); // Product category
                 $table->decimal('measure', 10, 2)->nullable();
                 $table->integer('tot_no_of_items')->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
                 $table->string('gst')->nullable()->default('0'); //GST % applicable at item
                 $table->integer('tot_points');
                 $table->string('pur_bill_no')->nullable();
-                $table->string('merchant')->nullable();                
+                $table->unsignedBigInteger('merchant');                
                 $table->unsignedBigInteger('user_id');
                 $table->string('qrcode')->nullable();
                 $table->timestamps();
@@ -38,6 +38,7 @@ return new class extends Migration
                 // Foreign key constraints
                 $table->foreign('item_id')->references('id')->on('items');
                 $table->foreign('user_id')->references('id')->on('users');
+                $table->foreign('merchant')->references('id')->on('users');
             }
     );
     }
