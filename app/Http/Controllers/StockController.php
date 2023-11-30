@@ -39,62 +39,67 @@ class StockController extends Controller
     }
     
 
-public function store(Request $request)
+    public function store(Request $request)
 {
-    // Validate the request data as needed
-    $validatedData = $request->validate([
-        'selected_items.*' => 'required|exists:items,id',
-        'item_id.*' => 'required',
-        'prod_pic.*' => 'required|string',
-        'name' => 'required',
-        'description' => 'required',
-        'type' => 'required',
-        'prod_cat' => 'required',
-        'measure' => 'nullable|numeric',
-        'tot_no_of_items' => 'nullable|integer',
-        'pur_value' => 'required|numeric',
-        'cgst' => 'nullable|numeric',
-        'sgst' => 'nullable|numeric',
-        'mrp' => 'required|numeric',
-        'sale_price' => 'required|numeric',
-        'gst' => 'required',
-        'tot_points' => 'required|numeric',
-        'pur_bill_no' => 'required|string',
-        'merchant' => 'required||exists:users,id',
-        'user_id' => 'required|exists:users,id',
-        'qrcode' => 'nullable|string',
-        ]);
-        $userId = Auth::id();
-    // Loop through the submitted items and create a stock record for each
+    $userId = Auth::id();
 
+    // Validation rules
+    $rules = [
+        'selected_items.*' => 'required|exists:items,id',
+        'prod_pic.*' => 'required|string',
+        'name.*' => 'required',
+        'description.*' => 'required',
+        'type.*' => 'required',
+        'prod_cat.*' => 'required',
+        'measure.*' => 'nullable|numeric',
+        'tot_no_of_items.*' => 'nullable|integer',
+        'pur_value.*' => 'required|numeric',
+        'cgst.*' => 'nullable|numeric',
+        'sgst.*' => 'nullable|numeric',
+        'mrp.*' => 'required|numeric',
+        'sale_price.*' => 'required|numeric',
+        'gst.*' => 'required',
+        'tot_points.*' => 'required|numeric',
+        'pur_bill_no.*' => 'required|string',
+        'merchant.*' => 'required|exists:users,id',
+        'qrcode.*' => 'nullable|string',
+    ];
+
+    return view('/stocks');
+
+    // Validate the request data
+    $validatedData = $request->validate($rules);
+
+    // Loop through the submitted items and create a stock record for each
     foreach ($validatedData['selected_items'] as $key => $selectedItemId) {
         Stock::create([
             'item_id' => $selectedItemId,
-            'prod_pic' => $validatedData['prod_pics'][$key],
-            'name' => $validatedData['prod_pics'][$key],
+            'prod_pic' => $validatedData['prod_pic'][$key],
+            'name' => $validatedData['name'][$key],
             'description' => $validatedData['description'][$key],
-            'type' => $validatedData['types'][$key],
+            'type' => $validatedData['type'][$key],
             'prod_cat' => $validatedData['prod_cat'][$key],
-            'measure' => 'nullable|numeric',
-            'tot_no_of_items' => 'nullable|integer',
-            'pur_value' => 'required|numeric',
-            'cgst' => 'nullable|numeric',
-            'sgst' => 'nullable|numeric',
-            'mrp' => 'required|numeric',
-            'sale_price' => 'required|numeric',
+            'measure' => $validatedData['measure'][$key],
+            'tot_no_of_items' => $validatedData['tot_no_of_items'][$key],
+            'pur_value' => $validatedData['pur_value'][$key],
+            'cgst' => $validatedData['cgst'][$key],
+            'sgst' => $validatedData['sgst'][$key],
+            'mrp' => $validatedData['mrp'][$key],
+            'sale_price' => $validatedData['sale_price'][$key],
             'gst' => $validatedData['gst'][$key],
-            'tot_points' => 'required|numeric',
-            'pur_bill_no' => 'required|string',
-            'merchant' => 'required|string',
+            'tot_points' => $validatedData['tot_points'][$key],
+            'pur_bill_no' => $validatedData['pur_bill_no'][$key],
+            'merchant' => $validatedData['merchant'][$key],
             'user_id' => $userId,
-            'qrcode' => 'nullable|string',
+            'qrcode' => $validatedData['qrcode'][$key],
             // Add other fields as needed
         ]);
     }
 
-    // Redirect to the index page or show a success message
-    return redirect()->route('stocks.create')->with('success', 'Stock created successfully');
+    // return redirect()->route('stocks.create')->with('success', 'Stock created successfully');
 }
+
+
 
     
     public function show(Stock $stock)
@@ -160,6 +165,7 @@ public function store(Request $request)
             'qrcode' => 'nullable|string',
             // Add other fields as needed
         ]);}
+        
 
         // Redirect to the index page or show the updated stock details
         return redirect()->route('stocks.index')->with('success', 'Stock updated successfully');
