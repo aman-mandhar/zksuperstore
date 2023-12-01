@@ -28,24 +28,23 @@ class StockController extends Controller
     ]);
 }
 
-    public function create()
-    {
-        $items = Item::all();
-        $merchants = User::where('user_role', '=', '6')->get(); // Retrieve the merchants
-        return view('stocks.create', [
-            'items' => $items,
-            'merchants' => $merchants,
-        ]);
-    }
-    
-
-    public function store(Request $request)
+public function create()
 {
-    $userId = Auth::id();
+    $items = Item::all();
+    $merchants = User::where('user_role', '=', '6')->get(); // Retrieve the merchants
 
-    // Validation rules
-    $rules = [
+    return view('stocks.create', [
+        'items' => $items,
+        'merchants' => $merchants,
+    ]);
+}
+
+public function store(Request $request)
+{
+    // Validate the request data as needed
+    $validatedData = $request->validate([
         'selected_items.*' => 'required|exists:items,id',
+        'item_id.*' => 'required',
         'prod_pic.*' => 'required|string',
         'name.*' => 'required',
         'description.*' => 'required',
@@ -63,12 +62,9 @@ class StockController extends Controller
         'pur_bill_no.*' => 'required|string',
         'merchant.*' => 'required|exists:users,id',
         'qrcode.*' => 'nullable|string',
-    ];
+    ]);
 
-    return view('/stocks');
-
-    // Validate the request data
-    $validatedData = $request->validate($rules);
+    $userId = Auth::id();
 
     // Loop through the submitted items and create a stock record for each
     foreach ($validatedData['selected_items'] as $key => $selectedItemId) {
@@ -92,15 +88,12 @@ class StockController extends Controller
             'merchant' => $validatedData['merchant'][$key],
             'user_id' => $userId,
             'qrcode' => $validatedData['qrcode'][$key],
-            // Add other fields as needed
         ]);
     }
 
-    // return redirect()->route('stocks.create')->with('success', 'Stock created successfully');
+    // Redirect to the index page or show a success message
+    return redirect()->route('stocks.create')->with('success', 'Stock created successfully');
 }
-
-
-
     
     public function show(Stock $stock)
     {

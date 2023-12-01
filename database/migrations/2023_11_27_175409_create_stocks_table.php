@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('gst');
             $table->decimal('tot_points', 10, 2);
             $table->string('pur_bill_no');
-            $table->foreign('merchant')->constrained();
+            $table->string('merchant');
             $table->foreignId('user_id')->constrained(); // Assuming you have a 'users' table
             $table->string('qrcode')->nullable();
             $table->timestamps();

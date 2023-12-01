@@ -28,20 +28,22 @@ class Stock extends Model
         'merchant',
         'user_id',
         'qrcode',
-        ];
-
+    ];
+    
     // Relationships
+    
     public function item()
     {
         return $this->belongsTo(Item::class, 'item_id');
     }
-
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    
     public function merchant()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'merchant');
     }
 }
