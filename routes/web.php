@@ -131,7 +131,8 @@ Route::post('/cart/add/{stockId}', [TransferController::class, 'addToCart'])->na
 
 
 Route::get('/stocks', [App\Http\Controllers\StockController::class, 'index'])->name('stocks.index');
-Route::get('/stocks/create', [App\Http\Controllers\StockController::class, 'create'])->name('stocks.create');
+Route::get('/stocks/transfer', [App\Http\Controllers\StockController::class, 'transfer'])->name('stocks.transfer');
+Route::get('/stocks/add/{itemId}', [StockController::class, 'add'])->name('stocks.add');
 Route::post('/stocks', [App\Http\Controllers\StockController::class, 'store'])->name('stocks.store');
 Route::get('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'show'])->name('stocks.show');
 Route::get('/stocks/{stock}/edit', [App\Http\Controllers\StockController::class, 'edit'])->name('stocks.edit');

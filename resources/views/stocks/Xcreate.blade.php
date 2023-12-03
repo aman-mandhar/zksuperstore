@@ -23,6 +23,7 @@
 
                                 @endforeach
                             </select>
+                        </div>
                                    
                         {{-- Measure field --}}
                         <div class="form-group" id="measureField" style="display: none;">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container col-md-6">
-        <h2>Stock Transfer</h2>
+        <h2>Add Stock</h2>
         <span>for</span>
 
         <table class="table col-md-6">
