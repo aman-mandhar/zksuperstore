@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('measure')->nullable();
             $table->integer('tot_no_of_items')->nullable();
             $table->decimal('pur_value', 10, 2);
-            $table->decimal('cgst', 8, 2)->nullable();
-            $table->decimal('sgst', 8, 2)->nullable();
+            $table->decimal('gst_paid', 8, 2)->nullable()->default('0.00');
             $table->decimal('mrp', 10, 2);
             $table->decimal('sale_price', 10, 2);
             $table->string('gst');
