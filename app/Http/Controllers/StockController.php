@@ -16,16 +16,20 @@ class StockController extends Controller
     public function index()
 {
     // Assuming you want to get all users with user_role = 6 as merchants
-    $merchants = User::where('user_role', '=', '6')->get();
-
-    // Fetch all stocks
+    $subwarehouse = User::where('user_role', '=', '4')->get();
+    $store = User::where('user_role', '=', '2')->get();
     $stocks = Stock::all();
-
-    // Pass the fetched data to the view
     return view('stocks.index', [
         'stocks' => $stocks,
-        'merchants' => $merchants,
+        'subwarehouse' => $subwarehouse,
+        'store' => $store
     ]);
+}
+
+public function bill()
+{
+    // Assuming you want to get all users with user_role = 6 as merchants
+ 
 }
 
     public function add($itemId)
@@ -146,10 +150,10 @@ class StockController extends Controller
         return redirect()->route('stocks.index')->with('success', 'Stock updated successfully');
     }
 
-    public function transfer($stockId)
+    public function transfer()
     {
         // Retrieve the item details
-        $stock = Stock::findOrFail($stockId);
+        $stock = Stock::all();
 
         // Retrieve the merchants
         $subwarehouse = User::where('user_role', '=', '4')->get();

@@ -3,42 +3,42 @@
 @section('content')
     <div class="container">
         {{-- Search Form --}}
-        <form action="{{ route('items.index') }}" method="GET" class="mb-3">
+        <form action="{{ route('stocks.index') }}" method="GET" class="mb-3">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search by name" name="search" id="search" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-outline-secondary">Search</button>
             </div>
         </form>
 
-        <h2>Items</h2>
+        <h2>Stocks</h2>
 
         {{-- Display Items --}}
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Type</th>
                     <th>Image</th>
+                    <th>Name</th>
+                    <th>Sale Price</th>
+                    <th>Points</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($items as $item)
+                @forelse($stocks as $stock)
                     <tr class="item-row">
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->description }}</td>
-                        <td>{{ $item->prod_cat }}</td>
-                        <td>{{ $item->type }}</td>
                         <td>
-                            <img src="{{ asset($item->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
+                            <img src="{{ asset($stock->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
                         </td>
+                        <td>{{ $stock->name }}</td>
+                        <td>{{ $stock->sale_price }}</td>
+                        <td>{{ 0.25 * $stock->tot_points }}</td>
+                        
 
                         <td>
-                            <a href="{{ route('stocks.add', $item->id) }}" class="btn btn-warning">Add Stock</a>
-                            <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('stocks.bill', $stock->id) }}" class="btn btn-warning">Sale</a>
+                            <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Required</a>
+                            <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
@@ -46,9 +46,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr>
-                        <td colspan="6">No items found</td>
-                    </tr>
+                    
                 @endforelse
             </tbody>
         </table>
