@@ -10,11 +10,6 @@ class Stock extends Model
 {
     protected $fillable = [
         'item_id',
-        'prod_pic',
-        'name',
-        'description',
-        'type',
-        'prod_cat',
         'measure',
         'tot_no_of_items',
         'pur_value',
@@ -40,8 +35,5 @@ class Stock extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     
-    public function merchant()
-    {
-        return $this->belongsTo(User::class, 'merchant');
-    }
+   
 }

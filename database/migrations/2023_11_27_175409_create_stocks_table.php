@@ -15,11 +15,6 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('item_id');
-            $table->string('prod_pic');
-            $table->string('name');
-            $table->text('description');
-            $table->string('type');
-            $table->string('prod_cat');
             $table->decimal('measure')->nullable();
             $table->integer('tot_no_of_items')->nullable();
             $table->decimal('pur_value');
@@ -28,13 +23,12 @@ return new class extends Migration
             $table->decimal('sale_price');
             $table->decimal('tot_points');
             $table->string('pur_bill_no')->nullable();
-            $table->unsignedBigInteger('merchant');
+            $table->string('merchant')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->string('qrcode')->nullable();
             $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
-            $table->foreign('merchant')->references('id')->on('users');
             $table->foreign('user_id')->references('id')->on('users');
 
             // Add any other fields as needed

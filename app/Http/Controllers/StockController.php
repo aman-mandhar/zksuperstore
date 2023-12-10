@@ -42,48 +42,41 @@ class StockController extends Controller
     }
 
     public function store(Request $request)
-    {
-        
-        // Validate the form data
-        $validatedData = $request->validate([
-            'item_id' => 'required|exists:items,id',
-            'prod_pic' => 'required|string', // Adjust the validation rules accordingly
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'type' => 'required|string',
-            'prod_cat' => 'required|string',
-            'merchant' => 'required',
-            'measure' => 'nullable|numeric', // Add validation rules for other fields as needed
-            'tot_no_of_items' => 'nullable|integer',
-            'pur_value' => 'required|numeric',
-            'gst' => 'required|numeric',
-            'mrp' => 'required|numeric',
-            'sale_price' => 'required|numeric',
-            'tot_points' => 'nullable|numeric',
-            'cash_discount' => 'nullable|numeric',
-            'pur_bill_no' => 'nullable|string',
-            'user_id' => Auth::check() ? 'required|numeric' : 'nullable|numeric',
-        ]);
-        
+{
+    // Validate the form data
+    $validatedData = $request->validate([
+        'item_id' => 'required|exists:items,id',
+        'merchant' => 'nullable',
+        'measure' => 'nullable',
+        'tot_no_of_items' => 'nullable',
+        'pur_value' => 'required|numeric',
+        'gst' => 'required|numeric',
+        'mrp' => 'required|numeric',
+        'sale_price' => 'required|numeric',
+        'tot_points' => 'nullable|numeric',
+        'pur_bill_no' => 'nullable|string',
+        'user_id' => Auth::check() ? 'nullable|numeric' : 'nullable', // Updated validation rule
+    ]);
 
-        // Add the current logged-in user_id to the validated data
-        if (Auth::check()) {
-            $validatedData['user_id'] = Auth::id();
-        } else {
-            // Log or debug message to check if this block is executed
-            return "No";
-        }
-        
-        // Create a new stock entry
-        $stock = new Stock($validatedData);
-        
-        // Save the stock entry
-        $stock->save();
-        dd($validatedData);
-
-        // Redirect or return a response as needed
-        return redirect()->route('items.index')->with('success', 'Stock added successfully');
+    // Add the current logged-in user_id to the validated data
+    if (Auth::check()) {
+        $validatedData['user_id'] = Auth::id();
+    } else {
+        // Log or debug message to check if this block is executed
+        return "No";
     }
+
+    // Create a new stock entry
+    $stock = new Stock($validatedData);
+
+    // Save the stock entry
+    $stock->save();
+
+    // Redirect to the desired route
+    return redirect()->route('items.index')->with('success', 'Stock added successfully');
+}
+
+
     
     public function show(Stock $stock)
     {
