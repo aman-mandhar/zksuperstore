@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container col-md-6">
         <h2>Add Stock</h2>
         <span>for</span>
-
+        {{ $data }}
         <table class="table col-md-6">
             <tbody>
                 <tr>
@@ -83,7 +84,7 @@
 
             <div class="form-group">
                 <label for="pur_bill_no">Bill No.:</label>
-                <input type="number" name="pur_bill_no" class="form-control">
+                <input type="text" name="pur_bill_no" class="form-control">
             </div>
 
             <!-- Add more fields based on your requirements -->

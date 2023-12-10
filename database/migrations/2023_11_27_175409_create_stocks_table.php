@@ -39,7 +39,7 @@ return new class extends Migration
 
             // Add any other fields as needed
         }
-    );
+    ); 
     }
 
     /**

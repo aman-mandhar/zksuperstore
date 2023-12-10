@@ -10,27 +10,22 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use AuthenticatesUsers;
+use PhpParser\Node\Stmt\Echo_;
 
 class StockController extends Controller
 {
     public function index()
-{
-    // Assuming you want to get all users with user_role = 6 as merchants
-    $subwarehouse = User::where('user_role', '=', '4')->get();
-    $store = User::where('user_role', '=', '2')->get();
-    $stocks = Stock::all();
-    return view('stocks.index', [
-        'stocks' => $stocks,
-        'subwarehouse' => $subwarehouse,
-        'store' => $store
-    ]);
-}
+        {    
+            $stocks = Stock::all();
+            return view('stocks.index', compact('stocks'));
+        }
 
-public function bill()
-{
-    // Assuming you want to get all users with user_role = 6 as merchants
- 
-}
+    
+
+        public function bill($stockId)
+        {    
+        return redirect()->route('stocks.index');
+        }
 
     public function add($itemId)
     {
@@ -48,6 +43,7 @@ public function bill()
 
     public function store(Request $request)
     {
+        
         // Validate the form data
         $validatedData = $request->validate([
             'item_id' => 'required|exists:items,id',
@@ -65,17 +61,25 @@ public function bill()
             'sale_price' => 'required|numeric',
             'tot_points' => 'nullable|numeric',
             'cash_discount' => 'nullable|numeric',
-            'pur_bill_no' => 'nullable|numeric',
+            'pur_bill_no' => 'nullable|string',
+            'user_id' => Auth::check() ? 'required|numeric' : 'nullable|numeric',
         ]);
+        
 
         // Add the current logged-in user_id to the validated data
-        $validatedData['user_id'] = Auth::id();
-
+        if (Auth::check()) {
+            $validatedData['user_id'] = Auth::id();
+        } else {
+            // Log or debug message to check if this block is executed
+            return "No";
+        }
+        
         // Create a new stock entry
         $stock = new Stock($validatedData);
-
+        
         // Save the stock entry
         $stock->save();
+        dd($validatedData);
 
         // Redirect or return a response as needed
         return redirect()->route('items.index')->with('success', 'Stock added successfully');

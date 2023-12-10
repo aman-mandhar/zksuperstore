@@ -20,6 +20,7 @@
                     <th>Name</th>
                     <th>Sale Price</th>
                     <th>Points</th>
+                    <th>Total Stock Value</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -32,8 +33,6 @@
                         <td>{{ $stock->name }}</td>
                         <td>{{ $stock->sale_price }}</td>
                         <td>{{ 0.25 * $stock->tot_points }}</td>
-                        
-
                         <td>
                             <a href="{{ route('stocks.bill', $stock->id) }}" class="btn btn-warning">Sale</a>
                             <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Required</a>
@@ -46,7 +45,10 @@
                         </td>
                     </tr>
                 @empty
-                    
+                    <!-- Handle the case where there are no stocks -->
+                    <tr>
+                        <td colspan="9">No stocks found</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -61,7 +63,7 @@
 
             // Loop through each row in the table body
             document.querySelectorAll('.item-row').forEach(function (row) {
-                var itemName = row.querySelector('td:first-child').textContent.toLowerCase();
+                var itemName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
                 row.style.display = itemName.includes(searchValue) ? 'table-row' : 'none';
             });
         });
