@@ -132,7 +132,7 @@ Route::post('/cart/add/{stockId}', [TransferController::class, 'addToCart'])->na
 
 Route::get('/stocks', [App\Http\Controllers\StockController::class, 'index'])->name('stocks.index');
 Route::get('/stocks/bill', [App\Http\Controllers\StockController::class, 'bill'])->name('stocks.bill');
-Route::get('/stocks/transfer', [App\Http\Controllers\StockController::class, 'transfer'])->name('stocks.transfer');
+Route::get('/stocks/transfer{$stockId}', [App\Http\Controllers\StockController::class, 'transfer'])->name('stocks.transfer');
 Route::get('/stocks/add/{itemId}', [App\Http\Controllers\StockController::class, 'add'])->name('stocks.add');
 Route::post('/stocks', [App\Http\Controllers\StockController::class, 'store'])->name('stocks.store');
 Route::get('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'show'])->name('stocks.show');
@@ -141,9 +141,3 @@ Route::put('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'upd
 Route::delete('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'destroy'])->name('stocks.destroy');
 
 Route::get('/transfers', [App\Http\Controllers\TransferController::class, 'index'])->name('transfers.index');
-Route::get('/transfers/create', [App\Http\Controllers\TransferController::class, 'create'])->name('transfers.create');
-Route::post('/transfers', [App\Http\Controllers\TransferController::class, 'store'])->name('transfers.store');
-Route::get('/transfers/{stock}', [App\Http\Controllers\TransferController::class, 'show'])->name('transfers.show');
-Route::get('/transfers/{stock}/edit', [App\Http\Controllers\TransferController::class, 'edit'])->name('transfers.edit');
-Route::put('/transfers/{stock}', [App\Http\Controllers\TransferController::class, 'update'])->name('transfers.update');
-Route::delete('/transfers/{stock}', [App\Http\Controllers\TransferController::class, 'destroy'])->name('transfers.destroy');

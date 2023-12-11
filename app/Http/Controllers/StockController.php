@@ -148,10 +148,10 @@ class StockController extends Controller
         return redirect()->route('stocks.index')->with('success', 'Stock updated successfully');
     }
 
-    public function transfer()
+    public function transfer($stockId)
     {
         // Retrieve the item details
-        $stock = Stock::all();
+        $stock = Stock::findOrFail($stockId);
 
         // Retrieve the merchants
         $subwarehouse = User::where('user_role', '=', '4')->get();
