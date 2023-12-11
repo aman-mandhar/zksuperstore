@@ -20,7 +20,6 @@
                     <th>Name</th>
                     <th>Sale Price</th>
                     <th>Points</th>
-                    <th>Total Stock Value</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -28,9 +27,21 @@
                 @forelse($stocks as $stock)
                     <tr class="item-row">
                         <td>
-                            <img src="{{ asset($stock->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
+                            @php
+                                $img = $stock->item->prod_pic; // Assuming there is a relationship between Stock and Item
+                            @endphp
+                                <img src="{{ asset($img) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
+
                         </td>
-                        <td>{{ $stock->name }}</td>
+                        <td>
+                            @php
+                                $name = $stock->item->name; // Assuming there is a relationship between Stock and Item
+                                $description = $stock->item->description; // Assuming there is a relationship between Stock and Item
+                            @endphp
+                            {{ $name }}
+                            <br>
+                            <small>{{ $description }}</small>
+                        </td>
                         <td>{{ $stock->sale_price }}</td>
                         <td>{{ 0.25 * $stock->tot_points }}</td>
                         <td>

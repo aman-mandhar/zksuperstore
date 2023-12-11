@@ -17,7 +17,8 @@ class StockController extends Controller
     public function index()
         {    
             $stocks = Stock::all();
-            return view('stocks.index', compact('stocks'));
+            $items = Item::all();
+            return view('stocks.index', ['stocks' => $stocks, 'items' => $items]);
         }
 
     
