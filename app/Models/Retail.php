@@ -12,7 +12,11 @@ class Retail extends Model
 
     // Specify the fillable columns
     protected $fillable = [
-        'user_id', 'store_add', 'city', 'manager', 'mobile_no'
+        'user_id', 
+        'store_add', 
+        'city', 
+        'manager', 
+        'mobile_no'
     ];
 
     // Eloquent relationship: a store belongs to a user

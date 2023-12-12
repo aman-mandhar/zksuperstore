@@ -5,31 +5,41 @@
     <div class="container col-md-6">
         <h2>Stock Transfer</h2>
         <span>for</span>
-       {{ $subwarehouse->name }}
-       {{ $store->name }}
         <table class="table col-md-6">
             <tbody>
                 <tr>
                     <td>
-                        <img src="{{ asset($item->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;"><br>
-                        <strong>{{ $item->type }}</strong>
+                        @php
+                            $img = $stock->item->prod_pic; // Assuming there is a relationship between Stock and Item
+                            @endphp
+                                <img src="{{ asset($img) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">
                     </td>
-                    <td><strong>{{ $item->name }}</strong><br>{{ $item->description }}<br><span><i>{{ $item->prod_cat }}</i></span></strong></td>
+                    <td>
+                        @php
+                            $name = $stock->item->name; // Assuming there is a relationship between Stock and Item
+                            $description = $stock->item->description; // Assuming there is a relationship between Stock and Item
+                            $prod_cat = $stock->item->prod_cat; // Assuming there is a relationship between Stock and Item
+                        @endphp
+                        {{ $name }}
+                        <br>
+                        <small>{{ $description }}</small>
+                        <br>
+                        <small>{{ $prod_cat }}</small>
+                    </td>
                  </tr>
             </tbody>
         </table>
-        <form action="{{ route('stocks.store') }}" method="POST" class="col-md-6">
+        <form action="{{ route('transfers.index') }}" method="POST" class="col-md-6">
             @csrf
-        
-            <select name="merchant" id="merchant" class="form-control" required>
-                <option value="Open Market" selected>Open Market</option>
-                @foreach($merchants as $merchant)
-                    <option value="{{ old($merchant->name) }}">{{ $merchant->name }}</option>
-                @endforeach
-            </select>
-        
+            <div class="form-group">
+                <input type="number" name="unit_price" id="unit_price" class="form-control" placeholder="Weight" value="{{ $stock->sale_price }}" readonly>    
+         </div>
+                  
             <!-- Add other fields as needed -->
-            @if ($item->type === "Loose")                        
+            @php
+                $type = $stock->item->type; // Assuming there is a relationship between Stock and Item
+            @endphp
+            @if ($type === "Loose")                        
                 <div class="form-group">
                     <label for="measure">Weight:</label>
                     <input type="number" name="measure" id="measure" class="form-control" placeholder="Weight">
@@ -41,20 +51,7 @@
                 </div>
             @endif
         
-            <div class="form-group">
-                <label for="pur_value">Purchase Amount per item:</label>
-                <input type="number" name="pur_value" id="pur_value" class="form-control" required placeholder="Purchase Amount per item">
-            </div>
-        
-            <div class="form-group">
-                <label for="gst">Total GST Paid:</label>
-                <input type="number" name="gst" id="gst" class="form-control" required placeholder="Total GST Paid">
-            </div>
-        
-            <div class="form-group">
-                <label for="mrp">Market Price:</label>
-                <input type="number" name="mrp" id="mrp" class="form-control" required placeholder="Market Price">
-            </div>
+            
         
             <div class="form-group">
                 <label for="sale_price">ZK Price per item:</label>
@@ -84,7 +81,7 @@
             <div class="form-group">
                 <label for="pur_bill_no">Bill No.:</label>
                 <input type="text" name="pur_bill_no" id="pur_bill_no" class="form-control">
-                <input type="hidden" name="item_id" id="item_id" class="form-control" value="{{ $item->id }}">
+                <input type="hidden" name="stock_id" id="stock_id" class="form-control" value="{{ $stock->id }}">
             </div>
         
             <!-- Add more fields based on your requirements -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Stock;
+use App\Models\Transfer;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 //use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -152,16 +153,48 @@ class StockController extends Controller
     {
         // Retrieve the item details
         $stock = Stock::findOrFail($stockId);
-
-        // Retrieve the merchants
         $subwarehouse = User::where('user_role', '=', '4')->get();
         $store = User::where('user_role', '=', '2')->get();
-
+        $warehouse = User::where('user_role', '=', '3')->get();
         return view('stocks.transfer', [
             'stock' => $stock,
             'subwarehouse' => $subwarehouse,
-            'store' => $store
+            'store' => $store,
+            'warehouse' => $warehouse,
         ]);
+    }
+
+    public function transferStore(Request $request, Stock $stock)
+    {
+        // Validate the request data as needed
+        $validatedData = $request->validate([
+            'stock_id' => 'required|exists:stocks,id',
+            'subwarehouse' => 'nullable|exists:users,id',
+            'store' => 'nullable|exists:users,id',
+            'warehouse' => 'nullable|exists:users,id',
+            'measure' => 'nullable|numeric',
+            'tot_no_of_items' => 'nullable|integer',
+            'points' => 'required|numeric',
+            'unit_price' => 'required|numeric',
+            'user_id' => Auth::check() ? 'nullable|numeric' : 'nullable', // Updated validation rule
+            // Add other validation rules for your fields
+        ]);
+
+        if (Auth::check()) {
+            $validatedData['user_id'] = Auth::id();
+        } else {
+            // Log or debug message to check if this block is executed
+            return "No";
+        }
+    
+        // Create a new stock entry
+        $transfer = new Transfer($validatedData);
+    
+        // Save the stock entry
+        $transfer->save();
+    
+        // Redirect to the desired route
+        return redirect()->route('stocks.index')->with('success', 'Stock transfered request successfully submitted');
     }
 
     public function destroy(Stock $stock)

@@ -125,7 +125,7 @@
                 var grossProfit = salePrice - cost;
     
                 // Calculate tot points (80% of gross profit)
-                var totPoints = 0.8 * grossProfit;
+                var totPoints = 0.82 * grossProfit;
     
                 // Calculate cash discount
                 var cashDiscount = mrp - salePrice;

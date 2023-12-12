@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\User; // Import the User model
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subwarehouse extends Model
+class Warehouse extends Model
 {
     // Define the table associated with the model
-    protected $table = 'subwarehouses';
+    protected $table = 'warehouses';
 
     // Specify the fillable columns
     protected $fillable = [

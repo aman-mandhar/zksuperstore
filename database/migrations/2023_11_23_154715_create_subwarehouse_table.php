@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('subwarehouses', function (Blueprint $table) {
             $table->id(); // Auto-increment ID
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->string('add'); // Store Address
             $table->string('city');
             $table->string('manager');  // Manager's Name            
@@ -22,7 +21,7 @@ return new class extends Migration
             $table->timestamps(); // Adds created_at and updated_at
 
             // user_id is a foreign key referencing users table:
-            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
