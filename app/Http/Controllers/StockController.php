@@ -169,13 +169,12 @@ class StockController extends Controller
         // Validate the request data as needed
         $validatedData = $request->validate([
             'stock_id' => 'required|exists:stocks,id',
-            'subwarehouse' => 'nullable|exists:users,id',
-            'store' => 'nullable|exists:users,id',
-            'warehouse' => 'nullable|exists:users,id',
+            'item_id' => 'required|exists:items,id',
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
             'points' => 'required|numeric',
             'unit_price' => 'required|numeric',
+            'status' => 'required|string',
             'user_id' => Auth::check() ? 'nullable|numeric' : 'nullable', // Updated validation rule
             // Add other validation rules for your fields
         ]);

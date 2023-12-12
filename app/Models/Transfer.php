@@ -17,13 +17,13 @@ class Transfer extends Model
 
     protected $fillable = [
         'stock_id',
-        'store_id',
-        'subwarehouse_id',
-        'warehouse_id',
+        'item_id',
         'user_id',
         'measure',
         'tot_no_of_items',
         'points',
+        'sale_price',
+        'status',
         
     ];
 
@@ -37,19 +37,8 @@ class Transfer extends Model
         return $this->belongsTo(Stock::class, 'stock_id');
     }
 
-    public function store()
+    public function item()
     {
-        return $this->belongsTo(Retail::class, 'store_id');
+        return $this->belongsTo(Item::class, 'item_id');
     }
-
-    public function subwarehouse()
-    {
-        return $this->belongsTo(Subwarehouse::class, 'subwarehouse_id');
-    }
-
-    public function warehouse()
-    {
-        return $this->belongsTo(Warehouse::class, 'warehouse_id');
-    }   
-
 }
