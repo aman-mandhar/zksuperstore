@@ -17,9 +17,10 @@ class StockController extends Controller
 {
     public function index()
         {    
+            $user = Auth::user();
             $stocks = Stock::all();
             $items = Item::all();
-            return view('stocks.index', ['stocks' => $stocks, 'items' => $items]);
+            return view('stocks.index', ['stocks' => $stocks, 'items' => $items , 'user' => $user]);
         }
 
     
@@ -156,11 +157,13 @@ class StockController extends Controller
         $subwarehouse = User::where('user_role', '=', '4')->get();
         $store = User::where('user_role', '=', '2')->get();
         $warehouse = User::where('user_role', '=', '3')->get();
+        $user = Auth::user();
         return view('stocks.transfer', [
             'stock' => $stock,
             'subwarehouse' => $subwarehouse,
             'store' => $store,
             'warehouse' => $warehouse,
+            'user' => $user,
         ]);
     }
 
@@ -173,18 +176,27 @@ class StockController extends Controller
             'measure' => 'nullable|numeric',
             'tot_no_of_items' => 'nullable|integer',
             'points' => 'required|numeric',
-            'unit_price' => 'required|numeric',
+            'sale_price' => 'required|numeric',
             'status' => 'required|string',
             'user_id' => Auth::check() ? 'nullable|numeric' : 'nullable', // Updated validation rule
             // Add other validation rules for your fields
         ]);
 
-        if (Auth::check()) {
+        // Ensure that measure and tot_no_of_items are not negative
+            if ($request->has('measure') && $validatedData['measure'] < 0) {
+                return redirect()->route('stocks.index')->with('success', 'Stock transfered request not submitted');
+            }
+
+            if ($request->has('tot_no_of_items') && $validatedData['tot_no_of_items'] < 0) {
+                return redirect()->route('stocks.index')->with('success', 'Stock transfered request not submitted');
+            }
+
+            if (Auth::check()) {
             $validatedData['user_id'] = Auth::id();
-        } else {
+            } else {
             // Log or debug message to check if this block is executed
             return "No";
-        }
+            }
     
         // Create a new stock entry
         $transfer = new Transfer($validatedData);

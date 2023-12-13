@@ -28,7 +28,7 @@ class DashboardController extends Controller
         }
         if(Auth::user()->user_role == 2)
         {
-        return redirect('store/dashboard')->with('status','Welcome to Dashboard');
+        return redirect('retails/dashboard')->with('status','Welcome to Dashboard');
         }
         if(Auth::user()->user_role == 3)
         {
@@ -51,6 +51,6 @@ class DashboardController extends Controller
     
     public function index()
     {
-        return view('stores.dashboard');
+        return view('retails.dashboard');
     }
 }

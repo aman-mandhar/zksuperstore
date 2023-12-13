@@ -27,6 +27,9 @@ return new class extends Migration
             * 4-Sub-Warehouse
             * 5-Employee
             * 6-Merchant
+            * 7-Transporter
+            * 8-Delivery Partner
+            * 9-Business Promoter
             */
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

@@ -140,4 +140,5 @@ Route::get('/stocks/{stock}/edit', [App\Http\Controllers\StockController::class,
 Route::put('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'update'])->name('stocks.update');
 Route::delete('/stocks/{stock}', [App\Http\Controllers\StockController::class, 'destroy'])->name('stocks.destroy');
 
-Route::get('/transfers', [App\Http\Controllers\TransferController::class, 'index'])->name('transfers.index');
+
+Route::post('/transfers', [App\Http\Controllers\StockController::class, 'transferStore'])->name('transfers.store');

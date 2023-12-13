@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use AuthenticatesUsers;
+use Livewire\Providers\LivewireServiceProvider;
 
 class RegisterController extends Controller
 {
@@ -59,10 +60,14 @@ class RegisterController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
+
+
     public function __construct()
     {
         $this->middleware('guest');
     }
+
+   
 
     protected function validator(array $data)
     {
@@ -88,6 +93,32 @@ class RegisterController extends Controller
         'city' => $data['city'],
         'gst_no' => $data['gst_no'],
     ]);
+    
 }
+
+public function showRegistrationForm()
+    {
+        $cities = [
+            'Amritsar',
+            'Ludhiana',
+            'Jalandhar',
+            'Patiala',
+            'Bathinda',
+            'Pathankot',
+            'Mohali',
+            'Hoshiarpur',
+            'Moga',
+            'Firozpur',
+            'Sangrur',
+            'Barnala',
+            'Faridkot',
+            'Fatehgarh Sahib',
+            'Rupnagar',
+            'Gurdaspur',
+            // Add more cities as needed
+        ];
+
+        return view('auth.register', compact('cities'));
+    }
 
 }

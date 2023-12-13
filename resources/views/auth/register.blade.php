@@ -71,10 +71,10 @@
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
+                        
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', '12345678') }}" required autocomplete="new-password">
+                        
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -82,12 +82,12 @@
                                 @enderror
                             </div>
                         </div>
-
+                        
                         <div class="row mb-3">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
+                        
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password', '12345678') }}" required autocomplete="new-password">
                             </div>
                         </div>
 
@@ -103,6 +103,9 @@
                                     <option value="4" {{ old('user_role') == '4' ? 'selected' : '' }}>Sub-Warehouse</option>
                                     <option value="5" {{ old('user_role') == '5' ? 'selected' : '' }}>Employee</option>
                                     <option value="6" {{ old('user_role') == '6' ? 'selected' : '' }}>Merchant</option>
+                                    <option value="7" {{ old('user_role') == '7' ? 'selected' : '' }}>Transporter</option>
+                                    <option value="8" {{ old('user_role') == '8' ? 'selected' : '' }}>Delivery Partner</option>
+                                    <option value="9" {{ old('user_role') == '9' ? 'selected' : '' }}>Business Promoter</option>
                                     <!-- Add more options for different user roles if needed -->
                                 </select>
 
@@ -113,13 +116,17 @@
                                 @enderror
                             </div>
                         </div>
-                        
                         <div class="row mb-3">
                             <label for="city" class="col-md-4 col-form-label text-md-end">{{ __('City') }}</label>
-
+                        
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city', 'Amritsar') }}"required autocomplete="city" autofocus>
-
+                                <select id="city" class="form-control @error('city') is-invalid @enderror" name="city" required>
+                                    <option value="">Select nearest City</option>
+                                    @foreach ($cities as $city)
+                                    <option value="{{ $city }}" {{ old('city') == $city ? 'selected' : '' }}>{{ $city }}</option>
+                                    @endforeach
+                                </select>
+                        
                                 @error('city')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -127,7 +134,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="row mb-3">
                             <label for="gst_no" class="col-md-4 col-form-label text-md-end">{{ __('GST Number') }}</label>
                         
