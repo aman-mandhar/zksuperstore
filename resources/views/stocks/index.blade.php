@@ -47,10 +47,20 @@
                             <td>{{ 0.50 * $stock->tot_points }}</td>
                         @elseif ($user->user_role == 4)
                             <td>{{ 0.25 * $stock->tot_points }}</td>
+                        @else
+                            <td>
+                                0
+                            </td>                    
                         @endif
                         <td>
                             <a href="{{ route('stocks.bill', $stock->id) }}" class="btn btn-warning">Sale</a>
+                            @if ($user->user_role == 2)
                             <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Required</a>
+                            @elseif ($user->user_role == 4)
+                            <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Required</a>
+                            @else
+                            <a href="{{ route('stocks.add', $stock->id) }}" class="btn btn-warning">Add Stock</a>
+                            @endif
                             <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST" style="display:inline;">
                                 @csrf
