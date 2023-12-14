@@ -21,7 +21,7 @@
                 <label for="prod_cat" class="col-md-4 col-form-label text-md-right">{{ __('Product Category') }}</label>
                 <div class="col-md-6">
                     <select id="prod_cat" class="form-control @error('prod_cat') is-invalid @enderror" name="prod_cat" required>
-                        <option value="" selected disabled>Select a category</option>
+                        <option value="{{ $item->prod_cat }}">{{ $item->prod_cat }}</option>
                         <option value="Health Products">Health Products</option>
                         <option value="Crockery">Crockery</option>
                         <option value="Electronics">Electronics</option>
@@ -41,6 +41,7 @@
                 <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('Product Type') }}</label>
                 <div class="col-md-6">
                     <select id="type" class="form-control @error('type') is-invalid @enderror" name="type" required>
+                        <option value="{{ $item->type }}">{{ $item->type }}</option>
                         <option value="Packet">Packet</option>
                         <option value="Loose">Loose</option>
                         
@@ -52,6 +53,12 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="gst">GST:</label>
+                <input type="number" class="form-control" id="gst" name="gst" value="{{ old('gst', $item->gst) }}" required>
+            </div>
+            
 
             <div class="form-group">
                 <label for="prod_pic">Product Picture:</label>

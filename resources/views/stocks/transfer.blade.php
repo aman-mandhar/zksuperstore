@@ -45,9 +45,9 @@
                         <td class="col-md-3">
                             <input type="number" name="points" id="points" class="form-control" readonly
                                 @if ($user->user_role == 2)
-                                value="{{ 0.50 * $stock->tot_points(where($stock->stock_id == $stock->id)) }}"
+                                value="{{ 0.50 * $stock->tot_points }}"
                                 @elseif ($user->user_role == 4)
-                                value="{{ 0.75 * $stock->tot_points }}"
+                                value="{{ 0.25 * $stock->tot_points }}"
                                 @endif
                             >   
                         </td>

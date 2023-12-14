@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Items', function (Blueprint $table) {
             $table->id(); // Auto-increment ID
             $table->string('name'); // Product name
-            $table->string('gst')->nullable()->default('0'); //GST % applicable at item
+            $table->number('gst')->nullable()->default('0'); //GST % applicable at item
             $table->string('description')->nullable(); // Product Descrition
             $table->string('type')->default('packet');
             $table->string('prod_cat'); // Product category

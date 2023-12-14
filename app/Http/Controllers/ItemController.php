@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 class ItemController extends Controller
 {
     // Display a listing of the items.
@@ -40,7 +41,7 @@ class ItemController extends Controller
             'description' => 'required|string',
             'prod_cat' => 'required|string',
             'type' => 'required|string|max:255',
-            'gst' => 'required|string|max:255',
+            'gst' => 'required|numeric|max:255',
             'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -64,27 +65,31 @@ class ItemController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $item = Item::findOrFail($id);
+{
+    $item = Item::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'prod_cat' => 'required|string',
-            'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // adjust validation as needed
-        ]);
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'prod_cat' => 'required|string',
+        'type' => 'required|string|max:255',
+        'gst' => 'required|numeric|max:255',
+        'prod_pic' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        $item->update($request->all());
-
-        // Handle image upload if a new image is provided
-        if ($request->hasFile('prod_pic')) {
-            $imagePath = $request->file('prod_pic')->store('public/images');
-            $item->prod_pic = $imagePath;
-            $item->save();
-        }
-
-        return redirect()->route('items.index')->with('success', 'Item updated successfully');
+    if ($request->hasFile('prod_pic')) {
+        $image = $request->file('prod_pic');
+        $imageName = time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('images'), $imageName);
+        $validatedData['prod_pic'] = 'images/'.$imageName;
     }
+
+    // Update all fields using validated data
+    $item->update($validatedData);
+
+    return redirect()->route('items.index')->with('success', 'Item updated successfully');
+}
+
     
     
     // Remove the specified item from storage.
