@@ -18,11 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('subwarehouse_id')->nullable();
             $table->unsignedBigInteger('warehouse_id')->nullable();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('employee_id');
+            $table->unsignedBigInteger('employee_id')->nullable();
             $table->unsignedBigInteger('ref_id');
             $table->decimal('total_gst', 8, 2);
             $table->decimal('total_price', 8, 2);
-            $table->decimal('total_points', 8, 2);     
+            $table->decimal('total_points_ref', 8, 2)->nullable();
+            $table->decimal('total_points_customer', 8, 2)->nullable();
+            $table->decimal('total_points_store', 8, 2)->nullable();     
             $table->decimal('grand_total', 8, 2);
             $table->decimal('paid_inr', 8, 2);
             $table->decimal('paid_points', 8, 2);
