@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
         {{-- Search Form --}}
-        <form action="{{ route('stocks.index') }}" method="GET" class="mb-3">
+        <form action="{{ route('stocks.services') }}" method="GET" class="mb-3">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search by name" name="search" id="search" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-outline-secondary">Search</button>
             </div>
         </form>
 
-        <h2>Stocks</h2>
+        <h2>Services</h2>
 
         {{-- Display Items --}}
         <table class="table">

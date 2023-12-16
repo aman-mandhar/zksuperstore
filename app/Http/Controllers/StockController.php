@@ -11,22 +11,34 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use AuthenticatesUsers;
-use PhpParser\Node\Stmt\Echo_;
+
 
 class StockController extends Controller
 {
     public function index()
-{    
-    $items = Item::all();
+{
+    $stocks = Stock::with(['item' => function ($query) {
+            $query->where('prod_cat', '!=', 'Service');
+        }])
+        ->get();
+
     $user = Auth::user();
 
-    // Use whereHas to filter based on the relationship with Item
-    $stocks = Stock::whereHas('item', function ($query) {
-        $query->where('prod_cat', '!=', 'Services');
-    })->get();
-
-    return view('stocks.index', ['stocks' => $stocks, 'items' => $items, 'user' => $user]);
+    return view('stocks.index', ['stocks' => $stocks, 'user' => $user]);
 }
+
+public function bizpro()
+{
+    $stocks = Stock::with(['item' => function ($query) {
+            $query->where('prod_cat', '=', 'Service');
+        }])
+        ->get();
+
+    $user = Auth::user();
+
+    return view('stocks.services', ['stocks' => $stocks, 'user' => $user]);
+}    
+    
 
 public function bill($stockId)
 {    
