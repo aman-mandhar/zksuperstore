@@ -36,7 +36,7 @@ public function bizpro()
 
     $user = Auth::user();
 
-    return view('stocks.services', ['stocks' => $stocks, 'user' => $user]);
+    return view('stocks.bizpro', ['stocks' => $stocks, 'user' => $user]);
 }    
     
 
