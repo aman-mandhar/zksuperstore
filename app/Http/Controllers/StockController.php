@@ -16,19 +16,23 @@ use PhpParser\Node\Stmt\Echo_;
 class StockController extends Controller
 {
     public function index()
-        {    
-            $user = Auth::user();
-            $stocks = Stock::all();
-            $items = Item::all();
-            return view('stocks.index', ['stocks' => $stocks, 'items' => $items , 'user' => $user]);
-        }
+{    
+    $items = Item::all();
+    $user = Auth::user();
 
-    
+    // Use whereHas to filter based on the relationship with Item
+    $stocks = Stock::whereHas('item', function ($query) {
+        $query->where('prod_cat', '!=', 'Services');
+    })->get();
 
-        public function bill($stockId)
-        {    
-        return redirect()->route('stocks.index');
-        }
+    return view('stocks.index', ['stocks' => $stocks, 'items' => $items, 'user' => $user]);
+}
+
+public function bill($stockId)
+{    
+    return redirect()->route('stocks.index');
+}
+
 
     public function add($itemId)
     {

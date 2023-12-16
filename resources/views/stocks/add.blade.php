@@ -40,7 +40,7 @@
                         <td class="col-md-3">
                             @if ($item->type === "Loose")                        
                             <div class="form-group">
-                                <input type="number" name="measure" id="measure" class="form-control" placeholder="Weight">
+                                <input type="number" name="measure" id="measure" class="form-control" placeholder="Weight" step="0.001">
                             </div>
                         @else
                             <div class="form-group">
@@ -54,7 +54,7 @@
                             <label for="pur_value">Purchase Amount per item:</label>
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="pur_value" id="pur_value" class="form-control" required placeholder="Purchase Amount per item">            
+                            <input type="number" name="pur_value" id="pur_value" class="form-control" required placeholder="Purchase Amount per item" step="0.01">            
                         </td>
                      </tr>
                      <tr class="row-md-6">
@@ -62,7 +62,7 @@
                             <label for="gst">Total GST Paid:</label>
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="gst" id="gst" class="form-control" required placeholder="Total GST Paid">
+                            <input type="number" name="gst" id="gst" class="form-control" required placeholder="Total GST Paid" step="0.01">
                         </td>
                      </tr>
                      <tr class="row-md-6">
@@ -70,7 +70,7 @@
                             <label for="mrp">Market Price:</label>
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="mrp" id="mrp" class="form-control" required placeholder="Market Price">
+                            <input type="number" name="mrp" id="mrp" class="form-control" required placeholder="Market Price" step="0.01">
                         </td>
                      </tr>
                      <tr class="row-md-6">
@@ -78,7 +78,7 @@
                             <label for="sale_price">ZK Price per item:</label>
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="sale_price" id="sale_price" class="form-control" required placeholder="ZK Price per item">
+                            <input type="number" name="sale_price" id="sale_price" class="form-control" required placeholder="ZK Price per item" step="0.01">
                         </td>
                      </tr>
                 </tbody>
@@ -101,16 +101,16 @@
                 <tbody>
                     <tr class="row-md-6">
                         <td class="col-md-3">
-                            <input type="number" name="cost" id="cost" class="form-control" readonly placeholder="0">
+                            <input type="number" name="cost" id="cost" class="form-control" readonly placeholder="0" step="0.01">
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="gross_profit" id="gross_profit" class="form-control" readonly placeholder="0">
+                            <input type="number" name="gross_profit" id="gross_profit" class="form-control" readonly placeholder="0" step="0.01">
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="tot_points" id="tot_points" class="form-control" readonly placeholder="0">
+                            <input type="number" name="tot_points" id="tot_points" class="form-control" readonly placeholder="0" step="0.01">
                         </td>
                         <td class="col-md-3">
-                            <input type="number" name="cash_discount" id="cash_discount" class="form-control" readonly placeholder="0">
+                            <input type="number" name="cash_discount" id="cash_discount" class="form-control" readonly placeholder="0" step="0.01">
                         </td>
                     </tr>
             </table>

@@ -56,6 +56,8 @@
                             <a href="{{ route('stocks.bill', $stock->id) }}" class="btn btn-warning">Sale</a>
                             @if ($user->user_role == 2)
                             <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Required</a>
+                            @elseif ($user->user_role == 3)
+                            <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Add Stock</a>
                             @elseif ($user->user_role == 4)
                             <a href="{{ route('stocks.transfer', $stock->id) }}" class="btn btn-warning">Required</a>
                             @else
