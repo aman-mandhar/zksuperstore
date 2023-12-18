@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('mobile_number')->unique(); // Using mobile number as unique identifier
-            $table->string('ref_mobile_number')->default('0000000000'); // Using this mobile number for referral income.
-            $table->tinyinteger('user_role')->default('0');  
+            $table->bigInteger('mobile_number')->unique();
+            $table->bigInteger('ref_mobile_number')->default('0000000000'); // Using this mobile number for referral income.
+            $table->tinyInteger('user_role')->default(0);  
             /**
             * USER ROLES
             * ----------

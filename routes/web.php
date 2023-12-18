@@ -35,6 +35,13 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/register', 'RegisterController@register')->name('register');
 
+Route::get('users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
+Route::post('users/store', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+Route::get('users/edit-user/{id}',[App\Http\Controllers\UserController::class, 'index'])->name('users.edit');
+Route::post('users/update-user/{id}', [App\Http\Controllers\UserController::class, 'index'])->name('users.update');
+Route::get('users/delete-user/{id}', [App\Http\Controllers\UserController::class, 'index'])->name('users.delete');
+
+
 
 
 Auth::routes();
@@ -144,3 +151,7 @@ Route::get('/stocks/transfer', [App\Http\Controllers\StockController::class, 'tr
 Route::post('/transfers', [App\Http\Controllers\StockController::class, 'transferStore'])->name('transfers.store');
 
 Route::get('/sales/kit', [App\Http\Controllers\SaleController::class, 'kit'])->name('sales.kit');
+Route::get('/sales/bill/{stockId}', [App\Http\Controllers\SaleController::class, 'bill'])->name('sales.bill');
+Route::get('/sales/bizpro', [App\Http\Controllers\SaleController::class, 'bizpro'])->name('sales.bizpro');
+
+

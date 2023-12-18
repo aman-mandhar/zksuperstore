@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id(); // Auto-increment ID
             $table->string('name'); // Product name
-            $table->number('gst')->nullable()->default('0'); //GST % applicable at item
-            $table->string('description')->nullable(); // Product Descrition
+            $table->float('gst')->default(0); // GST % applicable at item
+            $table->string('description')->nullable(); // Product Description
             $table->string('type')->default('packet');
             $table->string('prod_cat'); // Product category
             $table->string('prod_pic')->nullable(); // Product picture (assuming you'd store the file path here)
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('item');
+        Schema::dropIfExists('items');
     }
 };

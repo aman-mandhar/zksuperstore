@@ -26,9 +26,37 @@ class SaleController extends Controller
         }])
         ->get();
 
-    $user = Auth::user();
+    $items = Item::all();
 
-    return view('sales.kit', ['stocks' => $stocks, 'user' => $user]);
+    return view('sales.kit', ['stocks' => $stocks, 'items' => $items]);
 }
 
+    public function bizpro()
+{
+    $users = user::where ('user_role' , '=' , '9')->get();
+
+    return view('sales.bizpro', ['users' => $users]);
+}
+
+    public function bill($stockId)
+{
+    $stock = Stock::find($stockId);
+    $users = User::all();
+    $items = Item::all();
+
+    return view('sales.bill', ['stock' => $stock, 'users' => $users, 'items' => $items]);
+
+}
+
+    public function search(Request $request)
+{
+    $request->validate([
+        'mobile_number' => 'required|numeric',
+    ]);
+
+    $user = User::where('mobile_number', $request->mobile_number)->first();
+
+    return view('sales.bill', ['user' => $user]);
+}
+    
 }
