@@ -45,8 +45,8 @@ class UserController extends Controller
             // Validate the form data
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                'mobile_number' => 'required|numeric|digits:10|unique:users',
-                'ref_mobile_number' => 'required|numeric|digits:10',
+                'mobile_number' => 'required|string|regex:/^[0-9]{10}$/|unique:users,mobile_number',
+                'ref_mobile_number' => 'required|string|regex:/^[0-9]{10}$/',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
                 'user_role' => 'required|integer|in:0,1,2,3,4,5,6,7,8,9', // Use the allowed integer values
@@ -58,7 +58,7 @@ class UserController extends Controller
             $user = User::create($validatedData);
     
             // You can redirect the user wherever you want after creation
-            return redirect()->route('users.index')->with('success', 'User created successfully!');
+            return redirect()->route('users.create')->with('success', 'User created successfully!');
         }
     }
 }

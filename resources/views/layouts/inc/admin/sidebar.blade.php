@@ -8,14 +8,48 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" href="{{ '/sales/new' }}" target="_blank">
           <i class="mdi mdi-circle-outline menu-icon"></i>
-          <span class="menu-title">Product</span>
-          <i class="menu-arrow"></i>
+          <span class="menu-title">New Sale</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ '/items/create' }}" target="_blank">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Add Product</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ '/items' }}" target="_blank">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Product list</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ '/stocks' }}" target="_blank">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Stock list</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ '/stocks/create' }}" target="_blank">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Add Stock</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ '/stocks/transfer' }}" target="_blank">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Stock Requirement</span>
+        </a>
+      </li>
+
+      
+      
+
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"><a class="nav-link" href="{{ '/items/create' }}" target="_blank">Add Product</a></li>
+            
             <li class="nav-item"> <a class="nav-link" href="{{ '/items' }}" target="_blank">Product list</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ '/stocks' }}" target="_blank">Stock List</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ '/stocks/create' }}" target="_blank">Add Stock</a></li>

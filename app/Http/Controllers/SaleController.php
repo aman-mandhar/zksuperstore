@@ -19,6 +19,95 @@ use Illuminate\Support\Facades\Session;
 
 class SaleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function new(Request $request)
+{
+    $search = $request->get('search');
+    if ($search != null) {
+        $user = User::where('mobile_number', '=', $search)->get();
+        if ($user->isEmpty()) {
+            $cities = [
+                'Amritsar',
+                'Ludhiana',
+                'Jalandhar',
+                'Patiala',
+                'Bathinda',
+                'Pathankot',
+                'Mohali',
+                'Hoshiarpur',
+                'Moga',
+                'Firozpur',
+                'Sangrur',
+                'Barnala',
+                'Faridkot',
+                'Fatehgarh Sahib',
+                'Rupnagar',
+                'Gurdaspur',
+                // Add more cities as needed
+        ];
+            return view('sales.new_user', ['search' => $search], ['cities' => $cities], ['search' => $search]);
+        }
+        else {
+            $user = User::where('mobile_number', '=', $search)->first();
+            $items = Item::all();
+            $stocks = Stock::all();
+            return view('sales.create', ['user' => $user, 'items' => $items, 'stocks' => $stocks]);
+        }
+        $items = Item::all();
+        $stocks = Stock::all();
+        return view('sales.create', ['users' => $user], ['items' => $items], ['stocks' => $stocks]);
+    }
+        elseif 
+        
+        ($search == null) {
+        return view('sales.new');
+    } 
+        else {
+        $cities = [
+            'Amritsar',
+            'Ludhiana',
+            'Jalandhar',
+            'Patiala',
+            'Bathinda',
+            'Pathankot',
+            'Mohali',
+            'Hoshiarpur',
+            'Moga',
+            'Firozpur',
+            'Sangrur',
+            'Barnala',
+            'Faridkot',
+            'Fatehgarh Sahib',
+            'Rupnagar',
+            'Gurdaspur',
+            // Add more cities as needed
+        ];
+       
+        return view('sales.new_user', ['cities' => $cities], ['search' => $search]);
+    }
+    
+}
+    public function create($userId)
+{
+    $user = User::find($userId);
+    $items = Item::all();
+    $stocks = Stock::all();
+    
+    return view('sales.create', ['user' => $user, 'items' => $items, 'stocks' => $stocks]);
+}
+
+
+
+
+
+
+
+
+
     public function kit()
 {
     $stocks = Stock::with(['item' => function ($query) {

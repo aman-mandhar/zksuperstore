@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->bigInteger('mobile_number')->unique();
-            $table->bigInteger('ref_mobile_number')->default('0000000000'); // Using this mobile number for referral income.
+            $table->string('name')->default('Not Set');
+            $table->string('mobile_number', 10)->unique();
+            $table->string('ref_mobile_number', 10)->default('0000000000');
             $table->tinyInteger('user_role')->default(0);  
             /**
             * USER ROLES
