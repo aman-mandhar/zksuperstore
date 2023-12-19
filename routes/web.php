@@ -155,7 +155,7 @@ Route::get('/sales/new_user', [App\Http\Controllers\SaleController::class, 'new_
 Route::get('/sales/create/{user}', [App\Http\Controllers\SaleController::class, 'create'])->name('sales.create');
 
 Route::get('/sales/kit', [App\Http\Controllers\SaleController::class, 'kit'])->name('sales.kit');
-Route::get('/sales/bill/{stockId}', [App\Http\Controllers\SaleController::class, 'bill'])->name('sales.bill');
+Route::get('/sales/bill/{stockId}{userId}', [App\Http\Controllers\SaleController::class, 'bill'])->name('sales.bill');
 Route::get('/sales/bizpro', [App\Http\Controllers\SaleController::class, 'bizpro'])->name('sales.bizpro');
 
 

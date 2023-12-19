@@ -100,37 +100,10 @@ class SaleController extends Controller
     return view('sales.create', ['user' => $user, 'items' => $items, 'stocks' => $stocks]);
 }
 
-
-
-
-
-
-
-
-
-    public function kit()
-{
-    $stocks = Stock::with(['item' => function ($query) {
-            $query->where('prod_cat', '=', 'Service');
-        }])
-        ->get();
-
-    $items = Item::all();
-
-    return view('sales.kit', ['stocks' => $stocks, 'items' => $items]);
-}
-
-    public function bizpro()
-{
-    $users = user::where ('user_role' , '=' , '9')->get();
-
-    return view('sales.bizpro', ['users' => $users]);
-}
-
-    public function bill($stockId)
+    public function bill($stockId, $userId)
 {
     $stock = Stock::find($stockId);
-    $users = User::all();
+    $user = User::find($userId);
     $items = Item::all();
 
     return view('sales.bill', ['stock' => $stock, 'users' => $users, 'items' => $items]);
