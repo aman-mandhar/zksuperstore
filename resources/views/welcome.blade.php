@@ -5,7 +5,7 @@
             <section class="shop-section">
               <div class="shop-images">
                 <div class="shop-link">
-                  <h3>Shop vs code Laptops &amp; Tables</h3>
+                  <h3>Shop Laptops &amp; Tables</h3>
                   <img src="{{ asset('assets/user/images/img-1.png') }}" alt="card">
                   <a href="#">Shop now</a>
                 </div>
