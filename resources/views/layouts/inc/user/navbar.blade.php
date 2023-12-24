@@ -3,10 +3,17 @@
     <a href="#"><img src="{{ asset('assets/user/images/logo.png') }}" alt="logo"></a>
   </div>
   <div class="address">
-    <a href="#" class="deliver">Deliver</a>
+    <a href="#" class="deliver">Deliver at</a>
     <div class="map-icon">
-      <span class="material-symbols-outlined">location_on</span>
-      <a href="#" class="location">Amritsar</a>
+      <a href="#" class="location">
+        @guest
+          @if (Route::has('login'))
+            <a href="{{ route('login') }}">Login</a>
+          @endif
+        @else
+          {{ Auth::user()->city }}
+        @endguest
+      </a>
     </div>
   </div>
 
