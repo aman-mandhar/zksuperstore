@@ -25,16 +25,23 @@
     
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     
-    @livewireStyles  
+@livewireStyles  
 </head>
 <body>
-   @include('layouts.inc.admin.navbar')
-   @include('layouts.inc.admin.sidebar')
-   @yield('content')
-          
-       
-  
-    
+  <div class="container-scroller">
+    @include('layouts.inc.admin.navbar')
+    <div class="container-fluid page-body-wrapper">
+        @include('layouts.inc.admin.sidebar')
+        <div class="main-panel">
+            <div class="content-wrapper">
+                @yield('content')
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+   
 <!-- Scripts -->
 <!-- plugins:js -->
 <script src="{{ asset('admin/vendors/base/vendor.bundle.base.js') }}"></script>
@@ -61,5 +68,6 @@
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 @livewireScripts
+@stack('scripts')
 </body>
 </html>

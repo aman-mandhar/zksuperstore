@@ -175,3 +175,18 @@
         </div>
       </li>
     </ul>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.nav-link').on('click', function (e) {
+                // Prevent the default behavior of the link
+                e.preventDefault();
+                
+                // Toggle the collapse state of the submenu with sliding animation
+                $(this).next('.collapse').slideToggle();
+                // Toggle the arrow icon class
+                $(this).find('.menu-arrow').toggleClass('menu-arrow-reverse');
+            });
+        });
+    </script>
+    </nav>
