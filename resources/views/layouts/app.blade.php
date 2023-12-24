@@ -14,26 +14,37 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     
     <!-- Style -->
-    
+    <!-- plugins:css -->
+  <link rel="stylesheet" href="{{ asset('admin/vendors/mdi/css/materialdesignicons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/vendors/base/vendor.bundle.base.css') }}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="{{ asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+  <!-- End plugin css for this page -->
 
     
     <link rel="stylesheet" href="{{ asset('store/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     @livewireStyles  
 </head>
 <body>
     <div class="container-scroller">
         @include('layouts.inc.user.navbar')
-        <div class="container-fluid page-body-wrapper">
-           <div class="main-panel">
-            <div class="content-wrapper">
-              @yield('content')
-              @include('layouts.inc.user.footer')
-            </div>
-          </div>  
-        </div>
+        <div class="container-fluid page-body-wrapper">      
+          @include('layouts.inc.user.sidebar')
+          <div class="main-panel">
+              <div class="content-wrapper">
+                  @yield('content')
+              </div>
+          </div>
       </div>
 
+        @include('layouts.inc.user.footer')
+        
+    </div>
+    
       
       @livewireScripts
       @stack('scripts')

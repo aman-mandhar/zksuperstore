@@ -1,69 +1,116 @@
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link normal-navigation" href="{{ '/admin/dashboard' }}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{ route('sales.new') }}"  class="nav-link normal-navigation">
+        <i class="mdi mdi-circle-outline menu-icon"></i>
+        <h5>New Sale</h5>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="#auth">
           <i class="mdi mdi-circle-outline menu-icon"></i>
-          <span class="menu-title">UI Elements</span>
+          <span class="menu-title">Products</span>
           <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="ui-basic">
+      </a>
+      <div class="collapse" id="auth">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> All Products </a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> All Categories </a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> Requirement of any <br>else Product </a></li>
           </ul>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
-          <i class="mdi mdi-view-headline menu-icon"></i>
-          <span class="menu-title">Form elements</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
-          <i class="mdi mdi-chart-pie menu-icon"></i>
-          <span class="menu-title">Charts</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/tables/basic-table.html">
-          <i class="mdi mdi-grid-large menu-icon"></i>
-          <span class="menu-title">Tables</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="pages/icons/mdi.html">
-          <i class="mdi mdi-emoticon menu-icon"></i>
-          <span class="menu-title">Icons</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-          <i class="mdi mdi-account menu-icon"></i>
-          <span class="menu-title">User Pages</span>
-          <i class="menu-arrow"></i>
+      </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#auth">
+            <i class="mdi mdi-circle-outline menu-icon"></i>
+            <span class="menu-title">Services</span>
+            <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="auth">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-          </ul>
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> All Services </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> All Categories </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> Requirement of any <br>else Service </a></li>
+            </ul>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="documentation/documentation.html">
-          <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-          <span class="menu-title">Documentation</span>
+
+    <li class="nav-item">
+      <a class="nav-link" href="#auth">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Reward Points</span>
+          <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Referral Points </a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> Customer Points </a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Business Points </a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Adjust </a></li>
+          </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#auth">
+          <i class="mdi mdi-account menu-icon"></i>
+          <span class="menu-title">Referrals</span>
+          <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="auth">
+          <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Add Referral </a></li>
+              <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> List of Referrals </a></li>
+          </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#auth">
+            <i class="mdi mdi-account menu-icon"></i>
+            <span class="menu-title">My Account</span>
+            <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="auth">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Profile </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> Orders </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Wishlist </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Cart </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Addresses </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Payment Methods </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Logout </a></li>
+            </ul>
+        </div>
       </li>
-    </ul>
+  </ul>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+      $(document).ready(function () {
+  $('.nav-link.normal-navigation').on('click', function () {
+      // Continue with normal navigation for links with the class 'normal-navigation'
+      return;
+  });
+
+  $('.nav-link').not('.normal-navigation').on('click', function (e) {
+      // Prevent the default behavior of the link for other links
+      e.preventDefault();
+
+      // Toggle the collapse state of the submenu with sliding animation
+      $(this).next('.collapse').slideToggle();
+      // Toggle the arrow icon class
+      $(this).find('.menu-arrow').toggleClass('menu-arrow-reverse');
+  });
+});
+
+
+  </script>
   </nav>
