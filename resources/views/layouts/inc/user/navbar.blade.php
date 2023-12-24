@@ -4,7 +4,7 @@
   </div>
   <div class="address">
     <a href="#" class="deliver">Deliver at</a>
-    <div class="map-icon">
+    <div class="address">
       <a href="#" class="location">
         @guest
           @if (Route::has('login'))
