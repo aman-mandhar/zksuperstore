@@ -3,8 +3,6 @@
     <a href="#"><img src="{{ asset('assets/user/images/logo.png') }}" alt="logo"></a>
   </div>
   <div class="address">
-    <a href="#" class="deliver">Deliver at</a>
-    <div class="address">
       <a href="#" class="location">
         @guest
           @if (Route::has('login'))
@@ -14,8 +12,8 @@
           {{ Auth::user()->city }}
         @endguest
       </a>
-    </div>
   </div>
+  
 
   <div class="nav-search">
     <select class="select-search">
