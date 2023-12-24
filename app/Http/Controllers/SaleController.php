@@ -106,7 +106,7 @@ class SaleController extends Controller
     $user = User::find($userId);
     $items = Item::all();
 
-    return view('sales.bill', ['stock' => $stock, 'users' => $users, 'items' => $items]);
+    return view('sales.bill', ['stock' => $stock, 'users' => $user, 'items' => $items]);
 
 }
 
