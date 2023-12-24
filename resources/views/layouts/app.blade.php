@@ -23,7 +23,7 @@
 </head>
 <body>
     <div class="container-scroller">
-        @include('layouts.inc.store.navbar')
+        @include('layouts.inc.user.navbar')
         <div class="container-fluid page-body-wrapper">
            <div class="main-panel">
             <div class="content-wrapper">

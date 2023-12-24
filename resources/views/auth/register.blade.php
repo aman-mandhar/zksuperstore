@@ -71,9 +71,9 @@
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-                        
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', '12345678') }}" required autocomplete="new-password">
+                                <span class="text-muted">Minimum 8 digit password required</span>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                         
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -87,14 +87,14 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
                         
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password', '12345678') }}" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="user_role" class="col-md-4 col-form-label text-md-end">{{ __('User Role') }}</label>
+                            <label for="user_role" hidden class="col-md-4 col-form-label text-md-end">{{ __('User Role') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6" hidden>
                                 <select id="user_role" class="form-control @error('user_role') is-invalid @enderror" name="user_role" required>
                                     <option value="0" {{ old('user_role') == '0' ? 'selected' : '' }}>Customer</option>
                                     <option value="1" {{ old('user_role') == '1' ? 'selected' : '' }}>Admin</option>

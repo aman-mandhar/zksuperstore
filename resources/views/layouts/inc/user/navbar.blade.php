@@ -1,72 +1,73 @@
 <nav class="navbar">
   <div class="nav-logo">
-    <a href="#"><img src="{{ asset('assets/user/images/logo.png') }}" alt="logo"></a>
+    <a href="{{ url('/') }}"><img src="{{ asset('assets/user/images/logo.png') }}" alt="logo"></a>
   </div>
-  <div class="address">
-      <a href="#" class="location">
-        @guest
-          @if (Route::has('login'))
-            <a href="{{ route('login') }}">Login</a>
-          @endif
-        @else
-          {{ Auth::user()->city }}
-        @endguest
-      </a>
-  </div>
-  
-
   <div class="nav-search">
     <select class="select-search">
-<option>All</option>
-<option value="Packet">Daily Need</option>
+        <option>All</option>
+        <option value="Packet">Daily Need</option>
         <option value="Service">Service</option>
         <option value="Ticket">Ticket</option>
         <option value="Package">Package</option>
         <option value="Course">Course</option>
-</select>
+    </select>
     <input type="text" placeholder="Search" class="search-input">
     <div class="search-icon">
       <span class="material-symbols-outlined">search</span>
     </div>
   </div>
-
-  <div class="sign-in">
-   @guest
-   @if (Route::has('register'))
-      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-   @endif
-   @else
-      <a href="#" role="button">
-      <p>Hello, {{ Auth::user()->name }}</p>
-      </a>
+  <div class="banner">
+      <ul class="links">
+      <li>
+    <div>
+    <a href="#">
+      @guest
+        @if (Route::has('login'))
+          <a href="{{ route('login') }}">Login</a>
+        @endif
+      @else
+        {{ Auth::user()->city }}
+      @endguest
+    </a>
+    </li>
+    </div>
+  
+  <div class="banner">
+    <div>
+    @guest
+          @if (Route::has('register'))
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+          @endif
+          @else
+          <p>Hello, {{ Auth::user()->name }}</p>
+    @endguest
+    </div>
   </div>
 
-  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+  <div class="banner">
+    <div>
       <a class="dropdown-item" href="{{ route('logout') }}"
          onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
           {{ __('Logout') }}
       </a>
-
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
           @csrf
       </form>
+    </div> 
   </div>
 
-@endguest
+  <div class="banner">
+    <a href="#"><p>Orders</p></a>
   </div>
 
-  <div class="returns">
-    <a href="#"><p>Returns</p>
-      <span>&amp; Orders</span></a>
-  </div>
-
-  <div class="cart">
+  <div class="banner">
     <a href="#">
-      <span class="material-symbols-outlined cart-icon">shopping_cart</span>
+      <i class="fa fa-shopping-cart"></i>
       </a>
       <p>Cart</p>
   </div>
+
 </nav>
 
 <div class="banner">
