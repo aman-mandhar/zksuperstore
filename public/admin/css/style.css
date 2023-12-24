@@ -22516,6 +22516,12 @@ dl li {
   transition: all 0.2s ease-in;
 }
 
+.sidebar .nav .nav-item .nav-link i.menu-arrow.menu-arrow-reverse:before {
+  content: "\F13F"; /* Replace with the icon code for the reversed arrow */
+}
+
+
+
 .sidebar .nav .nav-item .nav-link .menu-title {
   color: inherit;
   display: inline-block;
