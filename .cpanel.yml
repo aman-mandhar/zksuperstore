@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home//zk/
+    - export DEPLOYPATH=/home/zk/
     - /bin/cp * $DEPLOYPATH
