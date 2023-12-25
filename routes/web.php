@@ -150,6 +150,7 @@ Route::get('/stocks/search', 'StockController@search');
 // Route::get('/stocks/transfer', [App\Http\Controllers\StockController::class, 'transfer'])->name('stocks.transfer');
 Route::post('/transfers', [App\Http\Controllers\StockController::class, 'transferStore'])->name('transfers.store');
 
+use App\Http\Controllers\SaleController;
 Route::get('/sales/new', [App\Http\Controllers\SaleController::class, 'new'])->name('sales.new');
 
 Route::get('/sales/new_user', [App\Http\Controllers\SaleController::class, 'new_user'])->name('sales.new_user');
@@ -162,6 +163,7 @@ Route::get('/sales/bizpro', [App\Http\Controllers\SaleController::class, 'bizpro
 
 Route::get('/sales/search', 'SaleController@search');
 Route::get('/sales/search_user', 'SaleController@search_user');
-Route::get('/sales/new_ref_sale', [App\Http\Controllers\SaleController::class, 'new_ref_sale'])->name('sales.new_ref_sale');
+
+Route::get('/sales/newrefsale', [App\Http\Controllers\SaleController::class, 'newrefsale'])->name('sales.newrefsale');
 
 

@@ -121,7 +121,7 @@ class SaleController extends Controller
     return view('sales.bill', ['user' => $user]);
 }
 
-public function new_ref_sale(Request $request)
+public function newrefsale(Request $request)
 {
     $search = $request->get('search');
     if ($search != null) {
@@ -146,7 +146,7 @@ public function new_ref_sale(Request $request)
                 'Gurdaspur',
                 // Add more cities as needed
         ];
-            return view('sales.new_ref_sale', ['search' => $search], ['cities' => $cities], ['search' => $search]);
+            return view('sales.newrefsale', ['search' => $search], ['cities' => $cities], ['search' => $search]);
         }
         else {
             $user = User::where('mobile_number', '=', $search)->first();
@@ -161,7 +161,7 @@ public function new_ref_sale(Request $request)
         elseif 
         
         ($search == null) {
-        return view('sales.new_ref_sale');
+        return view('sales.newrefsale');
     } 
         else {
         $cities = [
@@ -184,7 +184,7 @@ public function new_ref_sale(Request $request)
             // Add more cities as needed
         ];
        
-        return view('sales.new_ref_sale', ['cities' => $cities], ['search' => $search]);
+        return view('sales.newrefsale', ['cities' => $cities], ['search' => $search]);
     }
     
 }

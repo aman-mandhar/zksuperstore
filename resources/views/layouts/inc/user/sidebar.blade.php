@@ -9,7 +9,7 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{ url('sales/new_ref_sale') }}"  class="nav-link normal-navigation">
+      <a href="{{ '/sales/newrefsale' }}"  class="nav-link normal-navigation">
         <i class="mdi mdi-circle-outline menu-icon"></i>
         <h5>New Sale</h5>
       </a>
