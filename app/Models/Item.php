@@ -1,5 +1,4 @@
 <?php
-// app\Models\Item.php
 
 namespace App\Models;
 
@@ -16,11 +15,23 @@ class Item extends Model
         'prod_cat', 
         'prod_pic', 
         'type', 
-        'gst'];
+        'gst'
+    ];
 
     public function stocks()
-{
-    return $this->hasMany(Stock::class);
+    {
+        return $this->hasMany(Stock::class);
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(ProductSubcategory::class, 'subcategory_id');
+    }
+
+    public function variation()
+    {
+        return $this->belongsTo(ProductVariation::class, 'variation_id');
+    }
 }
-}
+
 

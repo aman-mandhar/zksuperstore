@@ -12,8 +12,8 @@
                     </td>
                     <td>
                         <img src="{{ asset($item->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;"><br>
-                        <span><i>{{ $item->prod_cat }}</i></span></strong></td>
-                 </tr>
+                        <a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                    </tr>
             </tbody>
         </table>
         <form action="{{ route('stocks.store') }}" method="POST" class="col-md-6">
@@ -86,7 +86,7 @@
             <table class="table col-md-12">
                 <thead>
                     <th>
-                        <label for="cost">Total Cost:</label>
+                        <label for="cost">Cost before GST:</label>
                     </th>
                     <th>
                         <label for="gross_profit">Gross Profit:</label> 
@@ -101,7 +101,7 @@
                 <tbody>
                     <tr class="row-md-6">
                         <td class="col-md-3">
-                            <input type="number" name="cost" id="cost" class="form-control" readonly placeholder="0" step="0.01">
+                            <input type="number" name="without_gst" id="without_gst" class="form-control" readonly placeholder="0" step="0.01">
                         </td>
                         <td class="col-md-3">
                             <input type="number" name="gross_profit" id="gross_profit" class="form-control" readonly placeholder="0" step="0.01">
@@ -120,6 +120,44 @@
                 <input type="text" name="pur_bill_no" id="pur_bill_no" class="form-control">
                 <input type="hidden" name="item_id" id="item_id" class="form-control" value="{{ $item->id }}">
             </div>
+
+            <div class="form-group">
+                <label for="pur_date">Purchase Date:</label>
+                <input type="date" name="pur_date" id="pur_date" class="form-control"> 
+            </div>
+
+            <div class="form-group">
+                <label for="mfg_date">Manufacturing Date:</label>
+                <input type="date" name="mfg_date" id="mfg_date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="exp_date">Expiry Date:</label>
+                <input type="date" name="exp_date" id="exp_date" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="batch_no">Batch No.:</label>
+                <input type="text" name="batch_no" id="batch_no" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="pur_bill_pic">Bill Picture:</label>
+                <input type="file" name="pur_bill_pic" id="pur_bill_pic" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea name="remarks" id="remarks" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="Active" selected>Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
         
             <!-- Add more fields based on your requirements -->
         
@@ -128,13 +166,29 @@
         
     </div>
     <script>
+         var itemGst = {{ $item->gst }};
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var purValueInput = document.getElementById('pur_value');
+        var gstInput = document.getElementById('gst');
+
+        purValueInput.addEventListener('input', updateCalculations);  
+        function updateCalculations() {
+            var purValue = parseFloat(purValueInput.value) || 0;
+            var gst = purValue * (itemGst / 100);
+            gstInput.value = gst.toFixed(2);
+        }
+    });
+        
         document.addEventListener('DOMContentLoaded', function () {
             // Select relevant input fields
             var purValueInput = document.getElementById('pur_value');
             var gstInput = document.getElementById('gst');
             var mrpInput = document.getElementById('mrp');
             var salePriceInput = document.getElementById('sale_price');
-            var costInput = document.getElementById('cost');
+            var withoutGstInput = document.getElementById('without_gst');
             var grossProfitInput = document.getElementById('gross_profit');
             var totPointsInput = document.getElementById('tot_points');
             var cashDiscountInput = document.getElementById('cash_discount');
@@ -153,11 +207,11 @@
                 var mrp = parseFloat(mrpInput.value) || 0;
                 var salePrice = parseFloat(salePriceInput.value) || 0;
     
-                // Calculate cost
-                var cost = purValue + gst;
+                // Calculate cost without_gst
+                var withoutGst = purValue - gst;
     
                 // Calculate gross profit
-                var grossProfit = salePrice - cost;
+                var grossProfit = salePrice - purValue;;
     
                 // Calculate tot points (80% of gross profit)
                 var totPoints = 0.82 * grossProfit;
@@ -166,12 +220,13 @@
                 var cashDiscount = mrp - salePrice;
     
                 // Update values in the readonly fields
-                costInput.value = cost.toFixed(2);
+                withoutGstInput.value = withoutGst.toFixed(2);
                 grossProfitInput.value = grossProfit.toFixed(2);
                 totPointsInput.value = totPoints.toFixed(2);
                 cashDiscountInput.value = cashDiscount.toFixed(2);
             }
         });
+
     </script>
     
     

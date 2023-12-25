@@ -18,7 +18,6 @@
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>Category</th>
                     <th>Type</th>
                     <th>Image</th>
                     <th>Actions</th>
@@ -29,7 +28,6 @@
                     <tr class="item-row">
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->description }}</td>
-                        <td>{{ $item->prod_cat }}</td>
                         <td>{{ $item->type }}</td>
                         <td>
                             <img src="{{ asset($item->prod_pic) }}" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover;">

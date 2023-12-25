@@ -10,6 +10,8 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\TransferController;
 use Illuminate\Contracts\Cache\Store;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -122,6 +124,12 @@ Route::delete('/retails/{retail}', [RetailController::class, 'destroy'])->name('
 
 
 
+Route::get('/items/categories', [App\Http\Controllers\ItemController::class, 'categories'])->name('items.categories');
+Route::get('/items/subcategories', [App\Http\Controllers\ItemController::class, 'subcategories'])->name('items.subcategories');
+Route::get('/items/variations', [App\Http\Controllers\ItemController::class, 'variations'])->name('items.variations');
+
+
+
 Route::get('/items', [App\Http\Controllers\ItemController::class, 'index'])->name('items.index');
 Route::get('/items/create', [App\Http\Controllers\ItemController::class, 'create'])->name('items.create');
 Route::post('/items', [App\Http\Controllers\ItemController::class, 'store'])->name('items.store');
@@ -129,6 +137,20 @@ Route::get('/items/{item}/edit', [App\Http\Controllers\ItemController::class, 'e
 Route::put('/items/{item}', [App\Http\Controllers\ItemController::class, 'update'])->name('items.update');
 Route::delete('/items/{item}', [App\Http\Controllers\ItemController::class, 'destroy'])->name('items.destroy');
 Route::get('/items/search', 'ItemController@search');
+Route::get('/items/search_category', 'ItemController@search_category');
+Route::get('/items/search_subcategory', 'ItemController@search_subcategory');
+Route::get('/items/search_variation', 'ItemController@search_variation');
+Route::post('/categories', [App\Http\Controllers\ItemController::class, 'categoryStore'])->name('categories.store');
+Route::post('/subcategories', [App\Http\Controllers\ItemController::class, 'subcategoryStore'])->name('subcategories.store');
+Route::post('/variations', [App\Http\Controllers\ItemController::class, 'variationStore'])->name('variations.store');
+
+Route::delete('/categories/{category}', [App\Http\Controllers\ItemController::class, 'categoryDestroy'])->name('categories.destroy');
+
+Route::delete('/subcategories/{subcategory}', [App\Http\Controllers\ItemController::class, 'subcategoryDestroy'])->name('subcategories.destroy');
+
+Route::delete('/variations/{variation}', [App\Http\Controllers\ItemController::class, 'variationDestroy'])->name('variations.destroy');
+
+
 
 
 Route::post('/cart/add/{stockId}', [TransferController::class, 'addToCart'])->name('cart.addToCart');

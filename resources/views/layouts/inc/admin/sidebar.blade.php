@@ -23,10 +23,11 @@
         </a>
         <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> Item List </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Add Item</a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Add Category</a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Add Item Type</a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('items.index' )}}"> Item List </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('items.create') }}"> Add Item</a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ '/items/categories' }}"> Add Category</a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ '/items/subcategories' }}"> Add Sub-Category</a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ '/items/variations' }}"> Add Variations</a></li>
             </ul>
         </div>
       </li>

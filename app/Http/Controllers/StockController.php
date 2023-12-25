@@ -74,6 +74,15 @@ public function bill($stockId)
         'sale_price' => 'required|numeric',
         'tot_points' => 'nullable|numeric',
         'pur_bill_no' => 'nullable|string',
+        'pur_bill_date' => 'nullable|date_format:Y-m-d',
+        'pur_bill_pic' => 'nullable|string',
+        'qrcode' => 'nullable|string',
+        'barcode' => 'nullable|string',
+        'batch_no' => 'nullable|string',
+        'mfg_date' => 'nullable|date_format:Y-m-d',
+        'exp_date' => 'nullable|date_format:Y-m-d',
+        'status' => 'nullable|string',
+        'remarks' => 'nullable|string',
         'user_id' => Auth::check() ? 'nullable|numeric' : 'nullable', // Updated validation rule
     ]);
 
