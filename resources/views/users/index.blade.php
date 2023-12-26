@@ -1,6 +1,6 @@
 <!-- resources/views/users/index.blade.php -->
 
-@extends('layouts.app') <!-- Extend the layout if you have one -->
+@extends('layouts.admin') <!-- Extend the layout if you have one -->
 
 @section('content')
     <h1>User Table Data</h1>
@@ -8,33 +8,37 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Mobile Number</th>
                 <th>Referral Mobile Number</th>
                 <th>User Role</th>
                 <th>Email</th>
-                <th>Email Verified At</th>
-                <th>Password</th>
-                <!-- Add more table headers for other user columns as needed -->
                 <th>Created At</th>
-                <th>Updated At</th>
+                <th>Action</th>
+                <th>destroy</th>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->mobile_number }}</td>
                     <td>{{ $user->ref_mobile_number }}</td>
                     <td>{{ $user->user_role }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->email_verified_at }}</td>
-                    <td>{{ $user->password }}</td>
-                    <!-- Add more table cells for other user columns as needed -->
                     <td>{{ $user->created_at }}</td>
-                    <td>{{ $user->updated_at }}</td>
+                    <td>
+                        <a href="{{ route('users.show', $user->id) }}">View</a>
+                        <a href="{{ route('users.role', $user->id) }}">Change Role</a>
+                        <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

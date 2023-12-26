@@ -40,10 +40,8 @@
         </a>
         <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Add </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> List </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Edit </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Delete </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('items.index') }}"> Add </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('stocks.index') }}"> List </a></li>
             </ul>
         </div>
       </li>
@@ -183,8 +181,8 @@
         </a>
         <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="auth\register"> Add </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/register.html"> List </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('users.create') }}"> Add </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('users.index') }}"> List </a></li>
                 <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Edit </a></li>
                 <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Delete </a></li>
             </ul>
