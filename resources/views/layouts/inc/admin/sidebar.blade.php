@@ -181,10 +181,8 @@
         </a>
         <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('users.create') }}"> Add </a></li>
+                <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('users.create') }}"> Add New </a></li>
                 <li class="nav-item"> <a class="nav-link normal-navigation" href="{{ route('users.index') }}"> List </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Edit </a></li>
-                <li class="nav-item"> <a class="nav-link normal-navigation" href="pages/samples/lock-screen.html"> Delete </a></li>
             </ul>
         </div>
       </li>

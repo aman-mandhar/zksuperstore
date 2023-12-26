@@ -33,17 +33,16 @@ Route::get('/', function () {
 
 
 
-Route::get('users', [UserController::class, 'index'])->name('users.index');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/users/roles', [App\Http\Controllers\UserController::class, 'roles'])->name('users.role');
-Route::post('/users/update-role/{id}', [App\Http\Controllers\UserController::class, 'roleUpdate'])->name('users.roleupdate');
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/users/roles/{id}', [App\Http\Controllers\UserController::class, 'roles'])->name('users.roles');
+Route::put('/users/roles/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::post('/register', 'RegisterController@register')->name('register');
 Route::get('/users/show/{id}',[App\Http\Controllers\UserController::class, 'show'])->name('users.show');
 Route::get('/users/create', [App\Http\Controllers\UserController::class, 'create'])->name('users.create');
 Route::post('/users/store', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
-Route::get('/users/edit-user/{id}',[App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
-Route::post('/users/update-user/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::get('/users/delete-user/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/getReferralName', [UserController::class, 'getReferralName'])->name('getReferralName');
 
 
 

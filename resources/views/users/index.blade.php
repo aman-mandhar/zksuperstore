@@ -8,13 +8,13 @@
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Mobile Number</th>
-                <th>Referral Mobile Number</th>
-                <th>User Role</th>
-                <th>Email</th>
-                <th>Created At</th>
-                <th>Action</th>
+                <th class="col-md-2">Name</th>
+                <th class="col-md-2">Mobile Number</th>
+                <th class="col-md-2">Referral Mobile Number</th>
+                <th class="col-md-2">User Role</th>
+                <th class="col-md-2">Email</th>
+                <th class="col-md-2">Created At</th>
+                <th class="col-md-2">Action</th>
                 <th>destroy</th>
             </tr>
         </thead>
@@ -29,8 +29,7 @@
                     <td>{{ $user->created_at }}</td>
                     <td>
                         <a href="{{ route('users.show', $user->id) }}">View</a>
-                        <a href="{{ route('users.role', $user->id) }}">Change Role</a>
-                        <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+                        <a href="{{ route('users.roles', $user->id) }}">Change Role</a>
                     </td>
                     <td>
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
@@ -43,4 +42,55 @@
             @endforeach
         </tbody>
     </table>
+    <table>
+        <thead>
+            <tr>
+                <th>User Role & Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>Customer</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Admin</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Store</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Warehouse</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Sub-Warehouse</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Employee</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Merchant</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Transporter</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Delivery Partner</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Business Promoter</td>
+            </tr>
+        </tbody>
+    </table>
 @endsection
+
+                        

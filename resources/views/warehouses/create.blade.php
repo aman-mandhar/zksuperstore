@@ -8,14 +8,14 @@
                     <div class="card-header">Create Retail Store</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('subwarehouses.store') }}">
+                        <form method="POST" action="{{ route('warehouses.store') }}">
                             @csrf
 
                             <div class="form-group">
                                 <label for="user_id">User:</label>
                                 <select name="user_id" id="user_id" class="form-control" required>
                                     @foreach($users as $user)
-                                        @if($user->user_role == 4)
+                                        @if($user->user_role == 3)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endif
                                     @endforeach
@@ -23,8 +23,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="add">Address:</label>
-                                <input type="text" name="add" id="add" class="form-control" required>
+                                <label for="store_add">Warehouse Address:</label>
+                                <input type="text" name="store_add" id="store_add" class="form-control" required>
                             </div>
 
                             <div class="form-group">

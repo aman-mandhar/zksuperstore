@@ -49,6 +49,12 @@
                 </div>
             </div>
             
+            <div class="row mb-3">
+                <label for="referral_name" class="col-md-4 col-form-label text-md-end">{{ __('Referral Name') }}</label>
+                <div class="col-md-6">
+                    <span id="referral_name"></span>
+                </div>
+            </div>
 
             <div class="row mb-3">
                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -153,4 +159,41 @@
             </div>
         </form>
     </div>
+    <script>
+        
+        document.getElementById('ref_mobile_number').addEventListener('blur', function() {
+                // Get the referral mobile number
+                var referralMobileNumber = document.getElementById('ref_mobile_number').value;
+
+                // Make an AJAX request to get the referral name
+                fetch(`/getReferralName?referralMobileNumber=${referralMobileNumber}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the Referral Name field
+                        document.getElementById('referral_name').innerText = data.name;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching Referral Name:', error);
+                    });
+            });
+        
+        
+        // Function to update the email field based on mobile_number
+        function updateEmail() {
+            var mobileNumberInput = document.getElementById('mobile_number');
+            var emailInput = document.getElementById('email');
+    
+            if (mobileNumberInput && emailInput) {
+                var mobileNumberValue = mobileNumberInput.value;
+                var domain = '@zksuperstore.com';
+    
+                // Update the email input value
+                emailInput.value = mobileNumberValue + domain;
+            }
+        }
+    
+        // Attach the event listener to the mobile_number input
+        document.getElementById('mobile_number').addEventListener('input', updateEmail);
+
+    </script>
 @endsection
