@@ -1,6 +1,6 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/zk/
+    - export DEPLOYPATH=/home/zksystem/
     - /bin/cp -r * $DEPLOYPATH
     - cd $DEPLOYPATH
     - php artisan config:cache
