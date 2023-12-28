@@ -1,7 +1,7 @@
 
 @extends('layouts.guest')
 @section('content')        
-            <img src="{{ asset('assets/user/images/hero.jpg') }}" alt="card"/>
+            1<img src="{{ asset('assets/user/images/hero.jpg') }}" alt="card"/>
             <section class="shop-section">
               <div class="shop-images">
                 <div class="shop-link">
